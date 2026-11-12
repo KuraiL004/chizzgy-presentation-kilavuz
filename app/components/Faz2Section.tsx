@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Check, Flame, Star } from 'lucide-react'
 import { FadeUp } from './motion'
 
 type Level = 'Basic' | 'Standart' | 'Premium'
@@ -14,21 +15,21 @@ const packages = [
     reels: 4,
     prices: { Basic: '699 ₼', Standart: '1.199 ₼', Premium: '1.849 ₼' },
     items: '4 Reels Video, 4 Kapak, 2 Post Tasarımı',
-    icon: '🚀',
+    levelTag: 'Temel Kapasite',
   },
   {
     name: 'Biznes',
     reels: 8,
     prices: { Basic: '1.349 ₼', Standart: '2.299 ₼', Premium: '3.449 ₼' },
     items: '8 Reels Video (1 Adet Hero Kurgu Dahil), 8 Kapak, 4 Post, Senaryo Yazımı',
-    icon: '💼',
+    levelTag: 'Büyüme Odaklı',
   },
   {
     name: 'Pro',
     reels: 12,
     prices: { Basic: '1.899 ₼', Standart: '3.199 ₼', Premium: '4.899 ₼' },
     items: '12 Reels Video (1 Adet Hero Kurgu Dahil), 12 Kapak, 6 Post, Senaryo, Aylık İçerik Planı',
-    icon: '⭐',
+    levelTag: 'Ana Prodüksiyon',
     isRecommended: true,
   },
   {
@@ -36,7 +37,7 @@ const packages = [
     reels: 16,
     prices: { Basic: '2.499 ₼', Standart: '4.149 ₼', Premium: '6.299 ₼' },
     items: '16 Reels Video (1 Adet Hero Kurgu Dahil), 16 Kapak, 8 Post, Senaryo, İçerik Planı, Özel Proje Koordinatörü',
-    icon: '👑',
+    levelTag: 'Maksimum Hacim',
   },
 ]
 
@@ -63,7 +64,9 @@ export default function Faz2Section() {
         {/* Başlık */}
         <FadeUp className="text-center mb-3">
           <div className="inline-flex items-center gap-2 border border-[#453027] bg-[#453027]/20 rounded-full px-4 py-1.5">
-            <span className="text-[#FF6D29] text-xs font-bold tracking-widest uppercase">FAZ 2: AYLIK DİJİTAL PRODÜKSİYON VE YÖNETİM</span>
+            <span className="text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
+              FAZ 2: AYLIK DİJİTAL PRODÜKSİYON VE YÖNETİM
+            </span>
           </div>
         </FadeUp>
         <FadeUp delay={0.1} className="text-center mb-14">
@@ -80,7 +83,7 @@ export default function Faz2Section() {
 
             {/* Rozet */}
             <div className="inline-flex items-center gap-2 bg-[#FF6D29] text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6">
-              <span>⭐</span>
+              <Star className="w-3.5 h-3.5 fill-white" />
               <span>KILAVUZ.AZ İÇİN ÖNERİLEN ANA PRODÜKSİYON PAKETİ</span>
             </div>
 
@@ -96,7 +99,7 @@ export default function Faz2Section() {
                 <ul className="space-y-2.5">
                   {proDeliveries.map((d, i) => (
                     <li key={i} className="flex items-start gap-2 text-[#BABABA] text-sm">
-                      <span className="text-[#FF6D29] font-bold mt-0.5 shrink-0">✓</span>
+                      <Check className="w-4 h-4 text-[#FF6D29] mt-0.5 shrink-0 stroke-[3]" />
                       <span>{d}</span>
                     </li>
                   ))}
@@ -149,7 +152,7 @@ export default function Faz2Section() {
                 <thead>
                   <tr className="border-b border-[#453027]/40">
                     <th className="text-left p-5 text-[#BABABA] text-sm font-semibold">Paket</th>
-                    <th className="text-center p-5 text-[#BABABA] text-sm font-semibold">Reels</th>
+                    <th className="text-center p-5 text-[#BABABA] text-sm font-semibold">Reels Sayısı</th>
                     <th className="text-center p-5 text-[#FF6D29] text-sm font-bold">
                       <AnimatePresence mode="wait">
                         <motion.span
@@ -159,11 +162,13 @@ export default function Faz2Section() {
                           exit={{ opacity: 0, y: 6 }}
                           transition={{ duration: 0.2 }}
                         >
-                          {activeLevel} Fiyat
+                          {activeLevel} Seviye
                         </motion.span>
                       </AnimatePresence>
                     </th>
-                    <th className="text-left p-5 text-[#BABABA] text-sm font-semibold hidden md:table-cell">İçerik Detayı</th>
+                    <th className="text-left p-5 text-[#BABABA] text-sm font-semibold hidden md:table-cell">
+                      İçerik ve Teslimat Detayı
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -179,21 +184,25 @@ export default function Faz2Section() {
                     >
                       <td className="p-5">
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{pkg.icon}</span>
+                          <div className="w-8 h-8 rounded-lg bg-[#453027]/40 border border-[#453027] flex items-center justify-center text-xs font-mono font-bold text-[#FF6D29]">
+                            {pkg.reels}
+                          </div>
                           <div>
                             <div className="flex items-center gap-2">
                               <span className="text-white font-bold">{pkg.name}</span>
                               {pkg.isRecommended && (
-                                <span className="text-[10px] bg-[#FF6D29] text-white rounded-full px-2 py-0.5 font-bold">
+                                <span className="text-[10px] bg-[#FF6D29] text-white rounded-full px-2 py-0.5 font-bold flex items-center gap-1">
+                                  <Flame className="w-2.5 h-2.5 fill-white" />
                                   ÖNERİLEN
                                 </span>
                               )}
                             </div>
+                            <span className="text-[#BABABA]/60 text-xs">{pkg.levelTag}</span>
                           </div>
                         </div>
                       </td>
                       <td className="p-5 text-center">
-                        <span className="text-[#BABABA] text-sm font-mono">{pkg.reels}</span>
+                        <span className="text-[#BABABA] text-sm font-mono font-semibold">{pkg.reels} Video</span>
                       </td>
                       <td className="p-5 text-center">
                         <AnimatePresence mode="wait">
@@ -236,4 +245,3 @@ export default function Faz2Section() {
     </section>
   )
 }
-

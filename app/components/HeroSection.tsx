@@ -1,38 +1,38 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Calendar, Layers, ShieldCheck, Globe } from 'lucide-react'
 import { AnimatedCounter, FadeUp } from './motion'
 
 const stats = [
   {
     value: 1995,
     suffix: '',
-    label: 'İstanbul Çağlayan\'dan Başlayan Endüstriyel Miras',
-    icon: '🏭',
+    label: "İstanbul Çağlayan'dan Başlayan Endüstriyel Miras",
+    Icon: Calendar,
   },
   {
     value: 8000,
     suffix: ' m²',
     label: 'Günlük Üretim (5.000 m² Kumaş + 3.000 m² UV/Solvent Baskı)',
-    icon: '📐',
+    Icon: Layers,
   },
   {
     value: 100,
     suffix: '+',
     label: 'Global Markanın Resmi Tedarikçisi ve Çözüm Ortağı',
-    icon: '🌍',
-    prefix: '',
+    Icon: ShieldCheck,
   },
   {
     text: 'TR • AZ • EU',
     label: 'İstanbul, Bakü, Danimarka, İspanya ve Almanya Operasyonları',
-    icon: '✈️',
+    Icon: Globe,
   },
 ]
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 pb-16">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16">
       {/* Arka plan ambiyans */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#FF6D29]/8 rounded-full blur-[120px]" />
@@ -87,32 +87,36 @@ export default function HeroSection() {
           }}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4"
         >
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-              }}
-              whileHover={{ y: -4, borderColor: '#FF6D29' }}
-              className="glass-card rounded-2xl p-6 cursor-default transition-all duration-300 hover:orange-glow group"
-              style={{ transition: 'border-color 0.3s, box-shadow 0.3s, transform 0.3s' }}
-            >
-              <div className="text-3xl mb-3">{stat.icon}</div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight">
-                {stat.text ? (
-                  <span>{stat.text}</span>
-                ) : (
-                  <AnimatedCounter
-                    end={stat.value!}
-                    suffix={stat.suffix}
-                    prefix={stat.prefix}
-                  />
-                )}
-              </div>
-              <div className="text-[#BABABA] text-xs sm:text-sm leading-snug">{stat.label}</div>
-            </motion.div>
-          ))}
+          {stats.map((stat, i) => {
+            const Icon = stat.Icon
+            return (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+                }}
+                whileHover={{ y: -4, borderColor: '#FF6D29' }}
+                className="glass-card rounded-2xl p-6 cursor-default transition-all duration-300 hover:orange-glow group"
+                style={{ transition: 'border-color 0.3s, box-shadow 0.3s, transform 0.3s' }}
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#453027]/40 border border-[#453027]/60 flex items-center justify-center mb-4 text-[#FF6D29] group-hover:bg-[#FF6D29]/15 group-hover:border-[#FF6D29]/40 transition-colors">
+                  <Icon className="w-5 h-5 text-[#FF6D29]" />
+                </div>
+                <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight">
+                  {stat.text ? (
+                    <span>{stat.text}</span>
+                  ) : (
+                    <AnimatedCounter
+                      end={stat.value!}
+                      suffix={stat.suffix}
+                    />
+                  )}
+                </div>
+                <div className="text-[#BABABA] text-xs sm:text-sm leading-snug">{stat.label}</div>
+              </motion.div>
+            )
+          })}
         </motion.div>
 
         {/* CTA Butonları */}
@@ -134,4 +138,3 @@ export default function HeroSection() {
     </section>
   )
 }
-

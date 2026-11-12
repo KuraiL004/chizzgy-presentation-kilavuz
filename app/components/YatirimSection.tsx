@@ -1,29 +1,35 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { FileSpreadsheet, Rocket, ArrowRight } from 'lucide-react'
 import { FadeUp } from './motion'
 
 const yatirimItems = [
   { label: 'FAZ 1 (A) — Kurumsal Brandbook', price: '2.500 ₼', type: 'Tek Seferlik' },
   { label: 'FAZ 1 (B) — Medya & Motion Kılavuzu', price: '1.000 ₼', type: 'Tek Seferlik' },
   { label: 'FAZ 1 (C) — Marketing Strategy (11 Bölüm)', price: '1.000 ₼', type: 'Tek Seferlik' },
-  { label: 'FAZ 1 (D) — Pilot Prodüksiyon (4 Premium Video)', price: '1.199 ₼', type: 'Tek Seferlik', original: '1.849 ₼' },
+  {
+    label: 'FAZ 1 (D) — Pilot Prodüksiyon (4 Premium Video)',
+    price: '1.199 ₼',
+    type: 'Tek Seferlik Özel Destek Fiyatı',
+    original: '1.849 ₼',
+  },
 ]
 
 const steps = [
   {
     num: '01',
     title: 'Kurulum Başlangıcı (Faz 1)',
-    desc: 'Sözleşme onayı ile birlikte Kılavuz Visual Solutions\'ın mevcut kurumsal materyalleri incelenir; Brandbook, özel LUT/Preset altyapısı ve 11 bölümlük Pazarlama Stratejisi hazırlanarak yönetimin onayına sunulur.',
+    desc: "Sözleşme onayı ile birlikte Kılavuz Visual Solutions'ın mevcut kurumsal materyalleri incelenir; Brandbook, özel LUT/Preset altyapısı ve 11 bölümlük Pazarlama Stratejisi hazırlanarak yönetimin onayına sunulur.",
     color: '#FF6D29',
-    icon: '🏗️',
+    Icon: FileSpreadsheet,
   },
   {
     num: '02',
     title: 'Prodüksiyon ve Büyüme (Faz 2)',
     desc: 'Onaylanan marka anayasası ve strateji doğrultusunda senaryolar yazılır, Bakü tesislerinde çekim günleri planlanır ve Kilavuz.az hesabı kurumsal standartlarda yeniden inşa edilir.',
     color: '#453027',
-    icon: '🚀',
+    Icon: Rocket,
   },
 ]
 
@@ -38,7 +44,9 @@ export default function YatirimSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Başlık */}
         <FadeUp className="text-center mb-3">
-          <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">Yatırım Tablosu & Yol Haritası</span>
+          <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">
+            Yatırım Tablosu & Yol Haritası
+          </span>
         </FadeUp>
         <FadeUp delay={0.1} className="text-center mb-14">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
@@ -56,7 +64,10 @@ export default function YatirimSection() {
               <div className="p-6">
                 <div className="space-y-4 mb-6">
                   {yatirimItems.map((item, i) => (
-                    <div key={i} className="flex items-center justify-between py-3 border-b border-[#453027]/30 last:border-0">
+                    <div
+                      key={i}
+                      className="flex items-center justify-between py-3 border-b border-[#453027]/30 last:border-0"
+                    >
                       <div>
                         <div className="text-white text-sm font-medium">{item.label}</div>
                         <div className="text-[#BABABA] text-xs mt-0.5">{item.type}</div>
@@ -75,8 +86,10 @@ export default function YatirimSection() {
                 <div className="bg-[#FF6D29]/10 border border-[#FF6D29]/30 rounded-xl p-4 mb-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-[#FF6D29] text-xs font-bold uppercase tracking-wide">FAZ 1 — Kurulum Toplamı</div>
-                      <div className="text-[#BABABA] text-xs mt-0.5">Tek Seferlik</div>
+                      <div className="text-[#FF6D29] text-xs font-bold uppercase tracking-wide">
+                        FAZ 1 — Kurulum Toplamı
+                      </div>
+                      <div className="text-[#BABABA] text-xs mt-0.5">Tek Seferlik Kurulum Paketi</div>
                     </div>
                     <div className="text-right">
                       <div className="text-[#BABABA] text-sm line-through">6.349 ₼</div>
@@ -89,7 +102,9 @@ export default function YatirimSection() {
                 <div className="bg-[#453027]/20 border border-[#453027]/60 rounded-xl p-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-white text-xs font-bold uppercase tracking-wide">FAZ 2 — Aylık Prodüksiyon</div>
+                      <div className="text-white text-xs font-bold uppercase tracking-wide">
+                        FAZ 2 — Aylık Prodüksiyon
+                      </div>
                       <div className="text-[#BABABA] text-xs mt-0.5">Pro Paket · 12 Reels · Premium</div>
                     </div>
                     <div className="text-right">
@@ -109,35 +124,38 @@ export default function YatirimSection() {
                 <h3 className="text-white font-bold text-lg">2 Adımlı Yol Haritası</h3>
               </div>
               <div className="p-6 space-y-6">
-                {steps.map((step, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.15, duration: 0.5 }}
-                    className="relative pl-6"
-                  >
-                    {/* Çizgi */}
-                    {i < steps.length - 1 && (
-                      <div className="absolute left-3 top-10 bottom-0 w-0.5 bg-[#453027]" />
-                    )}
-                    {/* Numara */}
-                    <div
-                      className="absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                      style={{ background: step.color }}
+                {steps.map((step, i) => {
+                  const Icon = step.Icon
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.15, duration: 0.5 }}
+                      className="relative pl-6"
                     >
-                      {step.num}
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xl">{step.icon}</span>
-                        <h4 className="text-white font-bold text-base">{step.title}</h4>
+                      {/* Çizgi */}
+                      {i < steps.length - 1 && (
+                        <div className="absolute left-3 top-10 bottom-0 w-0.5 bg-[#453027]" />
+                      )}
+                      {/* Numara */}
+                      <div
+                        className="absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                        style={{ background: step.color }}
+                      >
+                        {step.num}
                       </div>
-                      <p className="text-[#BABABA] text-sm leading-relaxed">{step.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
+                      <div>
+                        <div className="flex items-center gap-2.5 mb-2">
+                          <Icon className="w-5 h-5 text-[#FF6D29]" />
+                          <h4 className="text-white font-bold text-base">{step.title}</h4>
+                        </div>
+                        <p className="text-[#BABABA] text-sm leading-relaxed">{step.desc}</p>
+                      </div>
+                    </motion.div>
+                  )
+                })}
               </div>
             </div>
           </FadeUp>
@@ -149,7 +167,9 @@ export default function YatirimSection() {
             <div className="absolute inset-0 bg-gradient-to-br from-[#FF6D29]/5 to-transparent pointer-events-none" />
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#FF6D29] to-transparent" />
             <div className="relative">
-              <div className="text-4xl mb-4">🤝</div>
+              <div className="inline-flex items-center gap-2 border border-[#FF6D29]/40 bg-[#FF6D29]/10 rounded-full px-4 py-1.5 mb-5 text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
+                STRATEJİK İŞ BİRLİĞİ
+              </div>
               <h3 className="text-white text-2xl sm:text-3xl font-extrabold mb-3">
                 Birlikte İnşa Edelim
               </h3>
@@ -159,9 +179,10 @@ export default function YatirimSection() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
                   href="mailto:info@chizzgy.com"
-                  className="bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-bold px-10 py-4 rounded-full text-base transition-all duration-200 shadow-[0_0_30px_rgba(255,109,41,0.5)] hover:shadow-[0_0_50px_rgba(255,109,41,0.7)] w-full sm:w-auto"
+                  className="bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-bold px-10 py-4 rounded-full text-base transition-all duration-200 shadow-[0_0_30px_rgba(255,109,41,0.5)] hover:shadow-[0_0_50px_rgba(255,109,41,0.7)] w-full sm:w-auto inline-flex items-center justify-center gap-2"
                 >
-                  Hemen İletişime Geç →
+                  <span>Hemen İletişime Geç</span>
+                  <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
                   href="#faz1"
@@ -177,4 +198,3 @@ export default function YatirimSection() {
     </section>
   )
 }
-

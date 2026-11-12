@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Zap, Globe, Shield } from 'lucide-react'
 import { FadeUp } from './motion'
 
 const pillars = [
@@ -8,19 +9,19 @@ const pillars = [
     num: '01',
     title: 'Sıfır Karmaşa ve Hız',
     desc: 'Belirlenen renk, font, LUT ve kurgu standartları sayesinde her videoda "bu nasıl olsun?" tartışması yaşanmaz, revizyon süreçleri minimuma iner.',
-    icon: '⚡',
+    Icon: Zap,
   },
   {
     num: '02',
     title: 'Global Tutarlılık',
     desc: 'İstanbul, Bakü ve Kopenhag operasyonlarının tamamında aynı kurumsal dil ve görsel kalite konuşulur.',
-    icon: '🌐',
+    Icon: Globe,
   },
   {
     num: '03',
     title: 'B2B Güven İnşası',
     desc: 'Sayfaya giren kurumsal satın almacılar ve global partnerler, rastgele videolar değil; birbiriyle renk, ton ve kapak uyumu içinde olan prestijli bir fabrika vitrini görür.',
-    icon: '🤝',
+    Icon: Shield,
   },
 ]
 
@@ -63,26 +64,30 @@ export default function StratejiSection() {
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15 } } }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {pillars.map((p, i) => (
-            <motion.div
-              key={i}
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
-              }}
-              whileHover={{ y: -4 }}
-              className="glass-card rounded-2xl p-8 group cursor-default transition-all duration-300"
-              style={{ transition: 'transform 0.3s, border-color 0.3s, box-shadow 0.3s' }}
-            >
-              <div className="text-4xl mb-4">{p.icon}</div>
-              <div className="text-[#FF6D29] text-sm font-semibold mb-2 font-mono">{p.num} /</div>
-              <h3 className="text-white text-xl font-bold mb-3">{p.title}</h3>
-              <p className="text-[#BABABA] text-sm leading-relaxed">{p.desc}</p>
-            </motion.div>
-          ))}
+          {pillars.map((p, i) => {
+            const Icon = p.Icon
+            return (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+                }}
+                whileHover={{ y: -4 }}
+                className="glass-card rounded-2xl p-8 group cursor-default transition-all duration-300"
+                style={{ transition: 'transform 0.3s, border-color 0.3s, box-shadow 0.3s' }}
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#453027]/40 border border-[#453027]/70 flex items-center justify-center mb-5 text-[#FF6D29] group-hover:bg-[#FF6D29]/15 group-hover:border-[#FF6D29]/40 transition-colors">
+                  <Icon className="w-6 h-6 text-[#FF6D29]" />
+                </div>
+                <div className="text-[#FF6D29] text-sm font-semibold mb-2 font-mono">{p.num} /</div>
+                <h3 className="text-white text-xl font-bold mb-3">{p.title}</h3>
+                <p className="text-[#BABABA] text-sm leading-relaxed">{p.desc}</p>
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
     </section>
   )
 }
-

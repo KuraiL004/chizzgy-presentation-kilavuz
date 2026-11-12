@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { BookOpen, Clapperboard, BarChart3, Video, CheckCircle2 } from 'lucide-react'
 import { FadeUp } from './motion'
 
 const faz1Items = [
@@ -9,7 +10,7 @@ const faz1Items = [
     title: 'Kurumsal Kimlik, Basılı Materyal ve Promosyon Kılavuzu (Brandbook)',
     price: '2.500 ₼',
     type: 'Tek Seferlik',
-    icon: '📖',
+    Icon: BookOpen,
     items: [
       'Logo Sistemi ve Mimarisi (Ana logo, ülke bazlı alt marka kullanımları, güvenlik alanı)',
       'Renk (HEX, RGB) ve Tipografi Sistemi (CMYK, Pantone dahil)',
@@ -24,7 +25,7 @@ const faz1Items = [
     title: 'Medya, Fotoğrafçılık ve Video Prodüksiyon Kılavuzu (Visual & Motion Guidelines)',
     price: '1.000 ₼',
     type: 'Tek Seferlik',
-    icon: '🎬',
+    Icon: Clapperboard,
     items: [
       'Fotoğrafçılık ve Videography Stili (ışık, kadraj ve kamera hareketi kuralları)',
       'Özel Renk Profilleri (Custom LUT paketi)',
@@ -37,9 +38,9 @@ const faz1Items = [
     title: 'Sosyal Medya Pazarlama Stratejisi (11 Temel Bölüm)',
     price: '1.000 ₼',
     type: 'Tek Seferlik',
-    icon: '📊',
+    Icon: BarChart3,
     items: [
-      '01 | Brand Overview — 1995\'ten gelen miras ve ISO 9001 kalitesinin konumlandırması',
+      "01 | Brand Overview — 1995'ten gelen miras ve ISO 9001 kalitesinin konumlandırması",
       '02 | Target Audience — B2B karar vericiler ve kurumsal satın almacılar',
       '03 | Competitor Analysis — Yerel/bölgesel rakip analizi ve ayrışma noktaları',
       '04-05 | Social Media Objectives & Platform Strategy',
@@ -55,11 +56,11 @@ const faz1Items = [
     type: 'Tek Seferlik Özel Fiyat',
     originalPrice: '1.849 ₼',
     discount: '650 ₼ Kurulum Avantajı',
-    icon: '🎥',
+    Icon: Video,
     items: [
       '4 Adet Premium Reels konsept videosu',
       'Her videoya özel kapak/post tasarımı',
-      'Brandbook\'a uygun LUT ve preset uygulaması',
+      "Brandbook'a uygun LUT ve preset uygulaması",
       'Sahadan gerçek prodüksiyon çekimi (Bakü tesisleri)',
     ],
     isHighlight: true,
@@ -77,7 +78,9 @@ export default function Faz1Section() {
         {/* Başlık */}
         <FadeUp className="text-center mb-3">
           <div className="inline-flex items-center gap-2 border border-[#FF6D29]/40 bg-[#FF6D29]/10 rounded-full px-4 py-1.5">
-            <span className="text-[#FF6D29] text-xs font-bold tracking-widest uppercase">FAZ 1: TEMEL İNŞA VE SİSTEM KURULUMU</span>
+            <span className="text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
+              FAZ 1: TEMEL İNŞA VE SİSTEM KURULUMU
+            </span>
           </div>
         </FadeUp>
         <FadeUp delay={0.1} className="text-center mb-4">
@@ -101,62 +104,69 @@ export default function Faz1Section() {
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10"
         >
-          {faz1Items.map((item, i) => (
-            <motion.div
-              key={i}
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
-              }}
-              whileHover={{ y: -3 }}
-              className={`glass-card rounded-2xl p-8 group transition-all duration-300 ${
-                item.isHighlight ? 'border-[#FF6D29]/60' : ''
-              }`}
-              style={{ transition: 'transform 0.3s, border-color 0.3s, box-shadow 0.3s' }}
-            >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-5">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">{item.icon}</span>
-                  <div>
-                    <div className="text-[#FF6D29] text-xs font-bold font-mono mb-0.5">BÖLÜM {item.label}</div>
-                    <h3 className="text-white font-bold text-base leading-tight max-w-xs">{item.title}</h3>
+          {faz1Items.map((item, i) => {
+            const Icon = item.Icon
+            return (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+                }}
+                whileHover={{ y: -3 }}
+                className={`glass-card rounded-2xl p-8 group transition-all duration-300 ${
+                  item.isHighlight ? 'border-[#FF6D29]/60' : ''
+                }`}
+                style={{ transition: 'transform 0.3s, border-color 0.3s, box-shadow 0.3s' }}
+              >
+                {/* Header */}
+                <div className="flex items-start justify-between mb-5">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#453027]/40 border border-[#453027]/70 flex items-center justify-center text-[#FF6D29] group-hover:bg-[#FF6D29]/15 group-hover:border-[#FF6D29]/40 transition-colors">
+                      <Icon className="w-6 h-6 text-[#FF6D29]" />
+                    </div>
+                    <div>
+                      <div className="text-[#FF6D29] text-xs font-bold font-mono mb-0.5">
+                        BÖLÜM {item.label}
+                      </div>
+                      <h3 className="text-white font-bold text-base leading-tight max-w-xs">{item.title}</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* İçerik listesi */}
-              <ul className="space-y-2 mb-6">
-                {item.items.map((it, j) => (
-                  <li key={j} className="flex items-start gap-2 text-[#BABABA] text-sm">
-                    <span className="text-[#FF6D29] mt-0.5 shrink-0">→</span>
-                    <span>{it}</span>
-                  </li>
-                ))}
-              </ul>
+                {/* İçerik listesi */}
+                <ul className="space-y-2.5 mb-6">
+                  {item.items.map((it, j) => (
+                    <li key={j} className="flex items-start gap-2.5 text-[#BABABA] text-sm leading-snug">
+                      <CheckCircle2 className="w-4 h-4 text-[#FF6D29] mt-0.5 shrink-0" />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Fiyat */}
-              <div className="border-t border-[#453027]/60 pt-5 flex items-end justify-between">
-                <div>
-                  {item.originalPrice && (
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[#BABABA] text-sm line-through">{item.originalPrice}</span>
-                      <span className="text-xs bg-[#FF6D29]/20 text-[#FF6D29] rounded-full px-2 py-0.5 font-semibold">
-                        -{item.discount}
-                      </span>
+                {/* Fiyat */}
+                <div className="border-t border-[#453027]/60 pt-5 flex items-end justify-between">
+                  <div>
+                    {item.originalPrice && (
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[#BABABA] text-sm line-through">{item.originalPrice}</span>
+                        <span className="text-xs bg-[#FF6D29]/20 text-[#FF6D29] rounded-full px-2 py-0.5 font-semibold">
+                          -{item.discount}
+                        </span>
+                      </div>
+                    )}
+                    <div className="text-white text-2xl font-extrabold">{item.price}</div>
+                    <div className="text-[#BABABA] text-xs mt-0.5">{item.type}</div>
+                  </div>
+                  {item.isHighlight && (
+                    <div className="bg-[#FF6D29] text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                      ÖZEL KURULUM FIRSATI
                     </div>
                   )}
-                  <div className="text-white text-2xl font-extrabold">{item.price}</div>
-                  <div className="text-[#BABABA] text-xs mt-0.5">{item.type}</div>
                 </div>
-                {item.isHighlight && (
-                  <div className="bg-[#FF6D29] text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                    ÖNERİLEN
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          })}
         </motion.div>
 
         {/* FAZ 1 TOPLAM */}
@@ -165,7 +175,9 @@ export default function Faz1Section() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF6D29]/8 rounded-full blur-[80px] pointer-events-none" />
             <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
-                <div className="text-[#FF6D29] text-sm font-bold uppercase tracking-widest mb-2">FAZ 1 — TOPLAM YATIRIM</div>
+                <div className="text-[#FF6D29] text-sm font-bold uppercase tracking-widest mb-2">
+                  FAZ 1 — TOPLAM YATIRIM
+                </div>
                 <div className="flex items-center gap-4">
                   <span className="text-[#BABABA] text-xl line-through">6.349 ₼</span>
                   <span className="text-white text-4xl sm:text-5xl font-extrabold">5.699 ₼</span>
@@ -187,4 +199,3 @@ export default function Faz1Section() {
     </section>
   )
 }
-
