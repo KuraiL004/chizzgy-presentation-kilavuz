@@ -7,42 +7,42 @@ import { FadeUp } from './motion'
 const faz1Items = [
   {
     label: 'A',
-    title: 'Kurumsal Kimlik, Basılı Materyal ve Promosyon Kılavuzu (Brandbook)',
+    title: 'Korporativ Kimlik, Çap Materialları və Promosiya Təlimatı (Brandbook)',
     price: '2.500 ₼',
-    type: 'Tek Seferlik',
+    type: 'Birdəfəlik Quraşdırma',
     Icon: BookOpen,
     items: [
-      'Logo Sistemi ve Mimarisi (Ana logo, ülke bazlı alt marka kullanımları, güvenlik alanı)',
-      'Renk (HEX, RGB) ve Tipografi Sistemi (CMYK, Pantone dahil)',
-      'Resmi Kurumsal Evraklar (Kartvizit, Badge, Contract, Fatura şablonu)',
-      'Ambalaj ve Paketleme Tasarımları',
-      'Kurumsal Tekstil ve Promosyon (Üniformalar, kalemler, kupalar)',
-      'Filo ve Araç Giydirme Tasarımları',
+      'Loqo Sistemi və Arxitekturası (Əsas loqo, ölkələr üzrə sub-brend istifadəsi, təhlükəsizlik sahəsi)',
+      'Rəng (HEX, RGB) və Tipoqrafiya Sistemi (CMYK, Pantone daxil)',
+      'Rəsmi Korporativ Sənədlər (Vizitkalar, Beyclər, Müqavilə və Hesab-faktura şablonu)',
+      'Qablaşdırma və Paketləmə Dizaynları',
+      'Korporativ Tekstil və Promosiya (Uniformalar, qələmlər, fincanlar)',
+      'Park və Nəqliyyat Vasitələrinin Brendinqi Dizaynı',
     ],
   },
   {
     label: 'B',
-    title: 'Medya, Fotoğrafçılık ve Video Prodüksiyon Kılavuzu (Visual & Motion Guidelines)',
+    title: 'Media, Fotoqrafiya və Video Prodakşn Təlimatı (Visual & Motion Guidelines)',
     price: '1.000 ₼',
-    type: 'Tek Seferlik',
+    type: 'Birdəfəlik Quraşdırma',
     Icon: Clapperboard,
     items: [
-      'Fotoğrafçılık ve Videography Stili (ışık, kadraj ve kamera hareketi kuralları)',
-      'Özel Renk Profilleri (Custom LUT paketi)',
-      'Video Kurgu Stilleri, Text & Transition Presetleri',
-      'Kapak Fotoğrafı (Cover) ve Grid Stilleri',
+      'Fotoqrafiya və Videoqrafiya Üslubu (işıq, kadr və kamera hərəkəti qaydaları)',
+      'Xüsusi Rəng Profilləri (Custom LUT paketi)',
+      'Video Montaj Üslubları, Mətn və Keçid (Transition) Presetləri',
+      'Üzlük Fotosu (Cover) və Grid Üslubları',
     ],
   },
   {
     label: 'C',
-    title: 'Sosyal Medya Pazarlama Stratejisi (11 Temel Bölüm)',
+    title: 'Sosial Media Marketinq Strategiyası (11 Əsas Bölmə)',
     price: '1.000 ₼',
-    type: 'Tek Seferlik',
+    type: 'Birdəfəlik Quraşdırma',
     Icon: BarChart3,
     items: [
-      "01 | Brand Overview — 1995'ten gelen miras ve ISO 9001 kalitesinin konumlandırması",
-      '02 | Target Audience — B2B karar vericiler ve kurumsal satın almacılar',
-      '03 | Competitor Analysis — Yerel/bölgesel rakip analizi ve ayrışma noktaları',
+      "01 | Brand Overview — 1995-dən gələn miras və ISO 9001 keyfiyyətinin mövqeləndirilməsi",
+      '02 | Target Audience — B2B qərar qəbul edənlər və korporativ satınalmaçılar',
+      '03 | Competitor Analysis — Yerli və regional rəqiblərin təhlili, fərqlənmə nöqtələri',
       '04-05 | Social Media Objectives & Platform Strategy',
       '06-07 | Content Strategy & Content Pillars',
       '08-09 | Tone of Voice & Visual Direction',
@@ -51,17 +51,17 @@ const faz1Items = [
   },
   {
     label: 'D',
-    title: 'Pilot Prodüksiyon Testi — 4 Adet Premium Video',
+    title: 'Pilot Prodakşn Testi — 4 Ədəd Premium Video',
     price: '1.199 ₼',
-    type: 'Tek Seferlik Özel Fiyat',
+    type: 'Birdəfəlik Xüsusi Dəstək Qiyməti',
     originalPrice: '1.849 ₼',
-    discount: '650 ₼ Kurulum Avantajı',
+    discount: '650 ₼ Quraşdırma Üstünlüyü',
     Icon: Video,
     items: [
-      '4 Adet Premium Reels konsept videosu',
-      'Her videoya özel kapak/post tasarımı',
-      "Brandbook'a uygun LUT ve preset uygulaması",
-      'Sahadan gerçek prodüksiyon çekimi (Bakü tesisleri)',
+      '4 Ədəd Premium Reels konsept videosu',
+      'Hər videoya xüsusi üzlük/post dizaynı',
+      "Brandbook standartlarına uyğun LUT və montaj tətbiqi",
+      'Bakı istehsalat müəssisələrindən real çəkilişlər',
     ],
     isHighlight: true,
   },
@@ -69,30 +69,30 @@ const faz1Items = [
 
 export default function Faz1Section() {
   return (
-    <section id="faz1" className="py-24 relative">
+    <section id="faza1" className="py-24 relative">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-80 bg-[#453027]/10 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Başlık */}
+        {/* Başlıq */}
         <FadeUp className="text-center mb-3">
           <div className="inline-flex items-center gap-2 border border-[#FF6D29]/40 bg-[#FF6D29]/10 rounded-full px-4 py-1.5">
             <span className="text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
-              FAZ 1: TEMEL İNŞA VE SİSTEM KURULUMU
+              FAZA 1: TƏMƏL QURUCULUQ VƏ SİSTEMİN QURAŞDIRILMASI
             </span>
           </div>
         </FadeUp>
         <FadeUp delay={0.1} className="text-center mb-4">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Kurumsal Brandbook, Pazarlama Stratejisi
+            Korporativ Brandbook, Marketinq Strategiyası
             <br className="hidden sm:block" />
-            ve 4 Video Pilot Prodüksiyon
+            və 4 Video Pilot Prodakşn
           </h2>
         </FadeUp>
         <FadeUp delay={0.15} className="text-center mb-14">
           <p className="text-[#BABABA] text-sm sm:text-base max-w-2xl mx-auto">
-            Prodüksiyon aşamasına geçmeden önce markanın tüm fiziksel ve dijital varlıklarını tek bir standart altına alacak olan kurulum paketimizdir.
+            Prodakşn mərhələsinə keçməzdən əvvəl brendin bütün fiziki və rəqəmsal aktivlərini vahid standart altına gətirən quraşdırma paketimizdir.
           </p>
         </FadeUp>
 
@@ -127,14 +127,14 @@ export default function Faz1Section() {
                     </div>
                     <div>
                       <div className="text-[#FF6D29] text-xs font-bold font-mono mb-0.5">
-                        BÖLÜM {item.label}
+                        BÖLMƏ {item.label}
                       </div>
                       <h3 className="text-white font-bold text-base leading-tight max-w-xs">{item.title}</h3>
                     </div>
                   </div>
                 </div>
 
-                {/* İçerik listesi */}
+                {/* Məzmun siyahısı */}
                 <ul className="space-y-2.5 mb-6">
                   {item.items.map((it, j) => (
                     <li key={j} className="flex items-start gap-2.5 text-[#BABABA] text-sm leading-snug">
@@ -144,7 +144,7 @@ export default function Faz1Section() {
                   ))}
                 </ul>
 
-                {/* Fiyat */}
+                {/* Qiymət */}
                 <div className="border-t border-[#453027]/60 pt-5 flex items-end justify-between">
                   <div>
                     {item.originalPrice && (
@@ -160,7 +160,7 @@ export default function Faz1Section() {
                   </div>
                   {item.isHighlight && (
                     <div className="bg-[#FF6D29] text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                      ÖZEL KURULUM FIRSATI
+                      XÜSUSİ TƏKLİF
                     </div>
                   )}
                 </div>
@@ -169,28 +169,28 @@ export default function Faz1Section() {
           })}
         </motion.div>
 
-        {/* FAZ 1 TOPLAM */}
+        {/* FAZA 1 CƏMİ */}
         <FadeUp delay={0.2}>
           <div className="glass-card rounded-2xl p-8 border border-[#FF6D29]/40 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF6D29]/8 rounded-full blur-[80px] pointer-events-none" />
             <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <div className="text-[#FF6D29] text-sm font-bold uppercase tracking-widest mb-2">
-                  FAZ 1 — TOPLAM YATIRIM
+                  FAZA 1 — CƏMİ İNVESTİSİYA
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="text-[#BABABA] text-xl line-through">6.349 ₼</span>
                   <span className="text-white text-4xl sm:text-5xl font-extrabold">5.699 ₼</span>
                 </div>
                 <div className="text-[#BABABA] text-sm mt-1">
-                  Tek Seferlik Kurulum · Brandbook · Strateji · 4 Pilot Video
+                  Birdəfəlik Quraşdırma · Brandbook · Strategiya · 4 Pilot Video
                 </div>
               </div>
               <a
-                href="#yatirim"
+                href="#investisiya"
                 className="shrink-0 bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 shadow-[0_0_30px_rgba(255,109,41,0.4)] hover:shadow-[0_0_50px_rgba(255,109,41,0.65)] text-center whitespace-nowrap"
               >
-                Teklifi Onayla →
+                Təklifi Təsdiq Et →
               </a>
             </div>
           </div>

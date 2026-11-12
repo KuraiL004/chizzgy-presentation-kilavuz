@@ -3,9 +3,9 @@
 import { motion } from 'framer-motion'
 import { FadeUp } from './motion'
 
-// Referans görseldeki 7 sütun x 5 satır = 35 marka düzeni (örnek kurumsal markalar)
+// Referans görseldeki 7 sütun x 5 satır = 35 marka düzeni (kurumsal partnyorlar)
 const brands = [
-  // Satır 1
+  // Sətir 1
   { name: 'NETFLIX', category: 'Global Media' },
   { name: 'SAMSUNG', category: 'Tech' },
   { name: 'PEPSI', category: 'Beverage' },
@@ -14,7 +14,7 @@ const brands = [
   { name: 'KITKAT', category: 'Confectionery' },
   { name: 'MASTERCARD', category: 'Finance' },
 
-  // Satır 2
+  // Sətir 2
   { name: 'FORMULA 1', category: 'Motorsport' },
   { name: 'MTN DEW', category: 'Beverage' },
   { name: 'CHEETOS', category: 'Snack' },
@@ -23,7 +23,7 @@ const brands = [
   { name: 'HONOR', category: 'Tech' },
   { name: 'TECNO', category: 'Mobile' },
 
-  // Satır 3
+  // Sətir 3
   { name: 'BOLT FOOD', category: 'Delivery' },
   { name: 'SETANTA SPORTS', category: 'Broadcasting' },
   { name: 'DOMINOS', category: 'Food' },
@@ -32,7 +32,7 @@ const brands = [
   { name: 'BAKCELL', category: 'Telecom' },
   { name: 'OBA MARKET', category: 'Retail' },
 
-  // Satır 4
+  // Sətir 4
   { name: 'BRAVO', category: 'Supermarket' },
   { name: 'VEYSELOGLU', category: 'Holding' },
   { name: 'IRSAD', category: 'Electronics' },
@@ -41,7 +41,7 @@ const brands = [
   { name: 'CITYNET', category: 'Internet' },
   { name: 'NATURA', category: 'Juice' },
 
-  // Satır 5
+  // Sətir 5
   { name: 'HYPERX', category: 'Gaming' },
   { name: 'APAR', category: 'Logistics' },
   { name: 'MIA SHOES', category: 'Fashion' },
@@ -54,7 +54,7 @@ const brands = [
 export default function MarqueeBand() {
   return (
     <section className="py-24 border-y border-[#453027]/40 relative overflow-hidden">
-      {/* Arka plan ambiyans parıltısı */}
+      {/* Arxa plan ambiyans parıltısı */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#453027]/15 rounded-full blur-[140px]" />
       </div>
@@ -65,21 +65,21 @@ export default function MarqueeBand() {
             <div className="inline-flex items-center gap-2 border border-[#453027] bg-[#453027]/30 rounded-full px-4 py-1 mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF6D29]" />
               <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">
-                GÜVENİLEN PRODÜKSİYON VE STRATEJİ ORTAĞI
+                GÜVƏNİLƏN PRODAKŞN VƏ STRATEGİYA TƏRƏFDAŞI
               </span>
             </div>
           </FadeUp>
           <FadeUp delay={0.1}>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
-              Beraber Çalıştığımız Markalar
+              Birlikdə İşlədiyimiz Brendlər
             </h2>
             <p className="text-[#BABABA] text-sm max-w-xl mx-auto">
-              Chizzgy ekibinin görsel dünyasını, CGI ve prodüksiyon süreçlerini yönettiği markalar ve iş ortakları:
+              Chizzgy komandasının vizual dünyasını, CGI və prodakşn proseslərini idarə etdiyi brendlər və tərəfdaşlar:
             </p>
           </FadeUp>
         </div>
 
-        {/* Referans Görseldeki Bento Logo Izgara Düzeni (7 Sütunlu Grid) */}
+        {/* 7 Sütunlu Grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -104,7 +104,6 @@ export default function MarqueeBand() {
                 border: '1px solid rgba(69, 48, 39, 0.45)',
               }}
             >
-              {/* Subtle hover orange glow */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-[#FF6D29]/0 to-[#FF6D29]/0 group-hover:from-[#FF6D29]/5 group-hover:to-[#453027]/20 transition-all duration-300 pointer-events-none" />
 
               <span className="text-white/80 group-hover:text-white font-bold text-xs sm:text-[13px] tracking-wider text-center uppercase transition-colors duration-200 leading-tight">

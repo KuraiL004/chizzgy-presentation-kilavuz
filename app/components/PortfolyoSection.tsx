@@ -6,29 +6,29 @@ import { FadeUp } from './motion'
 
 const reels = [
   {
-    title: 'Endüstriyel & Kurumsal Hero Kurgu',
-    desc: 'Fabrika, makine parkuru ve yüksek tempo',
+    title: 'Sənaye və Korporativ Hero Montajı',
+    desc: 'Fabrik, avadanlıq parkı və yüksək dinamika',
     aspect: '9/16',
     color: '#453027',
     Icon: Video,
   },
   {
-    title: 'CGI, 3D & VFX Entegrasyonu',
-    desc: 'Unreal Engine 5, Blender ve Nuke compositing gücü',
+    title: 'CGI, 3D və VFX İnteqrasiyası',
+    desc: 'Unreal Engine 5, Blender və Nuke kompozisiya gücü',
     aspect: '9/16',
     color: '#3a2520',
     Icon: Box,
   },
   {
-    title: 'Dinamik Marka & Ürün Vitrin Reels',
-    desc: 'Özel geçiş presetleri ve ses tasarımı',
+    title: 'Dinamik Brend və Məhsul Vitrini',
+    desc: 'Xüsusi keçid presetləri və səs dizaynı',
     aspect: '9/16',
     color: '#453027',
     Icon: Sparkles,
   },
   {
-    title: 'Custom LUT & Sinematik Renk Dünyası',
-    desc: 'Çiğ fabrika ışıklarını kurumsal renklere dönüştürme',
+    title: 'Xüsusi LUT və Kinematik Rəng Dünyası',
+    desc: 'Zavod işıqlarını korporativ rənglərə çevirmə',
     aspect: '9/16',
     color: '#3a2520',
     Icon: Palette,
@@ -37,33 +37,35 @@ const reels = [
 
 export default function PortfolyoSection() {
   return (
-    <section id="portfolyo" className="py-24 relative">
+    <section id="portfel" className="py-24 relative">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-[#FF6D29]/6 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Başlık */}
+        {/* Başlıq */}
         <FadeUp className="text-center mb-3">
-          <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">Chizzgy Portfolyo</span>
+          <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">
+            Chizzgy Portfeli
+          </span>
         </FadeUp>
         <FadeUp delay={0.1} className="text-center mb-4">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Sinematik Üretim Gücümüz
+            Kinematik İstehsal Gücümüz
           </h2>
         </FadeUp>
         <FadeUp delay={0.15} className="text-center mb-14">
           <p className="text-[#BABABA] text-sm sm:text-base max-w-2xl mx-auto">
-            Sony FX3 / A7 IV sinema kameraları, profesyonel Godox ışık altyapısı, özel LUT renk bilimi ve üst düzey kurgu/CGI standartlarımız.
+            Sony FX3 / A7 IV kino kameraları, peşəkar Godox işıq infrastrukturu, xüsusi LUT rəng elmi və ən yüksək montaj/CGI standartlarımız.
           </p>
         </FadeUp>
 
-        {/* Ana Showreel Alanı */}
+        {/* Əsas Showreel Sahəsi */}
         <FadeUp delay={0.2} className="mb-10">
           <div className="relative w-full aspect-video glass-card rounded-2xl overflow-hidden flex items-center justify-center group cursor-pointer">
-            {/* Arka plan gradient */}
+            {/* Arxa plan gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#453027]/40 to-[#161316]" />
-            {/* Dekoratif çizgiler */}
+            {/* Dekorativ xətlər */}
             <div
               className="absolute inset-0 opacity-10"
               style={{
@@ -73,7 +75,7 @@ export default function PortfolyoSection() {
               }}
             />
             <div className="relative z-10 flex flex-col items-center gap-4">
-              {/* Play butonu */}
+              {/* Play düyməsi */}
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 className="w-20 h-20 bg-[#FF6D29] rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(255,109,41,0.5)] cursor-pointer"
@@ -81,11 +83,11 @@ export default function PortfolyoSection() {
                 <Play className="w-8 h-8 text-white ml-1 fill-white" />
               </motion.div>
               <div className="text-center">
-                <div className="text-white font-bold text-lg">Hero / Portfolio Amiral Gemisi Kurgu Örneği</div>
+                <div className="text-white font-bold text-lg">Hero / Portfel Flaqman Montaj Nümunəsi</div>
                 <div className="text-[#BABABA] text-sm mt-1">Showreel — Chizzgy Creative</div>
               </div>
             </div>
-            {/* Köşe rozeti */}
+            {/* Künc rozeti */}
             <div className="absolute top-4 left-4 bg-[#FF6D29] text-white text-xs font-bold px-3 py-1 rounded-full">
               16:9 SHOWREEL
             </div>
@@ -113,7 +115,7 @@ export default function PortfolyoSection() {
                 className="glass-card rounded-xl overflow-hidden cursor-pointer group"
                 style={{ transition: 'transform 0.3s, border-color 0.3s, box-shadow 0.3s' }}
               >
-                {/* Video placeholder (9:16 dikey) */}
+                {/* Video placeholder (9:16 şaquli) */}
                 <div className="relative w-full" style={{ aspectRatio: '9/16' }}>
                   <div
                     className="absolute inset-0 flex flex-col items-center justify-center"
@@ -132,7 +134,7 @@ export default function PortfolyoSection() {
                     9:16
                   </div>
                 </div>
-                {/* Bilgi */}
+                {/* Məlumat */}
                 <div className="p-4">
                   <h4 className="text-white text-xs font-bold mb-1 leading-tight">{r.title}</h4>
                   <p className="text-[#BABABA] text-[11px] leading-snug">{r.desc}</p>
@@ -142,13 +144,13 @@ export default function PortfolyoSection() {
           })}
         </motion.div>
 
-        {/* Ekipman etiketleri */}
+        {/* Avadanlıq etiketləri */}
         <FadeUp delay={0.3} className="flex flex-wrap justify-center gap-3 mt-10">
           {[
             'Sony FX3',
             'Sony A7 IV',
-            'Godox ışık altyapısı',
-            'Özel LUT paketi',
+            'Godox peşəkar işıqlandırma',
+            'Xüsusi LUT paketi',
             'Unreal Engine 5',
             'Blender',
             'Nuke Compositing',

@@ -8,24 +8,24 @@ const stats = [
   {
     value: 1995,
     suffix: '',
-    label: "İstanbul Çağlayan'dan Başlayan Endüstriyel Miras",
+    label: "İstanbul Çağlayandan Başlayan Sənaye Mirası",
     Icon: Calendar,
   },
   {
     value: 8000,
     suffix: ' m²',
-    label: 'Günlük Üretim (5.000 m² Kumaş + 3.000 m² UV/Solvent Baskı)',
+    label: 'Gündəlik İstehsal (5.000 m² Parça + 3.000 m² UV/Solvent Çap)',
     Icon: Layers,
   },
   {
     value: 100,
     suffix: '+',
-    label: 'Global Markanın Resmi Tedarikçisi ve Çözüm Ortağı',
+    label: 'Qlobal Markanın Rəsmi Təchizatçısı və Həll Tərəfdaşı',
     Icon: ShieldCheck,
   },
   {
     text: 'TR • AZ • EU',
-    label: 'İstanbul, Bakü, Danimarka, İspanya ve Almanya Operasyonları',
+    label: 'İstanbul, Bakı, Danimarka, İspaniya və Almaniya Əməliyyatları',
     Icon: Globe,
   },
 ]
@@ -33,7 +33,7 @@ const stats = [
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16">
-      {/* Arka plan ambiyans */}
+      {/* Arxa plan ambiyansı */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#FF6D29]/8 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#453027]/30 rounded-full blur-[100px]" />
@@ -55,28 +55,28 @@ export default function HeroSection() {
           <div className="inline-flex items-center gap-2 border border-[#453027] bg-[#453027]/20 rounded-full px-4 py-1.5">
             <span className="w-1.5 h-1.5 bg-[#FF6D29] rounded-full animate-pulse" />
             <span className="text-[#BABABA] text-xs font-medium tracking-widest uppercase">
-              Kurumsal İş Birliği ve Dijital Dönüşüm Sunumu
+              KORPORATİV ƏMƏKDAŞLIQ VƏ RƏQƏMSAL TRANSFORMASİYA TƏQDİMATI
             </span>
           </div>
         </FadeUp>
 
-        {/* Ana Başlık */}
+        {/* Əsas Başlıq */}
         <FadeUp delay={0.1} className="text-center mb-6">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight max-w-5xl mx-auto">
-            1995&apos;ten Günümüze Ulaşan{' '}
-            <span className="text-[#FF6D29]">Endüstriyel Üretim</span>{' '}
-            Gücünün Global ve Dijital Standartlara Taşınması
+            1995-ci İldən Bu Günə Çatan{' '}
+            <span className="text-[#FF6D29]">Sənaye İstehsal Gücünün</span>{' '}
+            Qlobal və Rəqəmsal Standartlara Daşınması
           </h1>
         </FadeUp>
 
-        {/* Açıklama */}
+        {/* İzah Mətni */}
         <FadeUp delay={0.2} className="text-center mb-14">
           <p className="text-[#BABABA] text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-            1995 yılında İstanbul Çağlayan&apos;da başlayan, günlük 5.000 m² kumaş baskı ve 3.000 m² dijital baskı kapasitesine ulaşan, ISO 9001 (Meyer TÜRKAK onaylı) kalite standartlarına sahip ve Türkiye&apos;den sonra Azerbaycan (Bakü) ile Avrupa&apos;ya açılan <strong className="text-white">Kılavuz Visual Solutions</strong>, sıradan bir işletme değil, uluslararası bir endüstri devidir.
+            1995-ci ildə İstanbul Çağlayanda başlayan, gündəlik 5.000 m² parça çapı və 3.000 m² rəqəmsal çap (Solvent, UV) həcminə çatan, ISO 9001 (Meyer TÜRKAK təsdiqli) keyfiyyət standartlarına sahib və Türkiyədən sonra Azərbaycan (Bakı) ilə Avropaya (Danimarka, İspaniya, Almaniya) açılan <strong className="text-white">Kılavuz Visual Solutions</strong>, sadəcə bir müəssisə deyil, beynəlxalq bir sənaye nəhəngidir.
           </p>
         </FadeUp>
 
-        {/* Stats Bento Grid */}
+        {/* Statistika Bento Grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -119,19 +119,19 @@ export default function HeroSection() {
           })}
         </motion.div>
 
-        {/* CTA Butonları */}
+        {/* CTA Düymələri */}
         <FadeUp delay={0.4} className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
           <a
-            href="#faz1"
+            href="#faza1"
             className="bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 shadow-[0_0_30px_rgba(255,109,41,0.4)] hover:shadow-[0_0_50px_rgba(255,109,41,0.65)] w-full sm:w-auto text-center"
           >
-            Faz 1 Kurulum Paketini İncele →
+            Faza 1 Quraşdırma Paketini İncələ →
           </a>
           <a
-            href="#portfolyo"
+            href="#portfel"
             className="border border-[#453027] hover:border-[#FF6D29] text-white hover:text-[#FF6D29] font-semibold px-8 py-4 rounded-full text-base transition-all duration-200 w-full sm:w-auto text-center"
           >
-            Portfolyoyu Gör
+            Portfeli Gör
           </a>
         </FadeUp>
       </div>

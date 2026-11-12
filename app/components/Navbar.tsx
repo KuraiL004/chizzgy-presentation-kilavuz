@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const links = [
-  { href: '#strateji', label: 'Strateji' },
-  { href: '#portfolyo', label: 'Portfolyo' },
-  { href: '#faz1', label: 'Faz 1: Kurulum' },
-  { href: '#faz2', label: 'Faz 2: Paketler' },
-  { href: '#yolharitasi', label: 'Yol Haritası' },
+  { href: '#strategiya', label: 'Strategiya' },
+  { href: '#portfel', label: 'Portfel' },
+  { href: '#faza1', label: 'Faza 1: Quraşdırma' },
+  { href: '#faza2', label: 'Faza 2: Paketlər' },
+  { href: '#yolxeritesi', label: 'Yol Xəritəsi' },
 ]
 
 export default function Navbar() {
@@ -30,7 +30,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Logo çifti */}
+        {/* Loqo cütü */}
         <div className="flex items-center gap-4">
           <div className="text-left">
             <div className="text-white font-bold text-lg leading-none tracking-tight">CHIZZGY</div>
@@ -43,7 +43,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop linkler */}
+        {/* Desktop linklər */}
         <div className="hidden lg:flex items-center gap-6">
           {links.map((l) => (
             <a
@@ -59,18 +59,18 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden lg:flex">
           <a
-            href="#yatirim"
+            href="#investisiya"
             className="bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-all duration-200 shadow-[0_0_20px_rgba(255,109,41,0.4)] hover:shadow-[0_0_30px_rgba(255,109,41,0.6)]"
           >
-            Yatırım Planı (Teklif)
+            İnvestisiya Planı (Təklif)
           </a>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobil menyu düyməsi */}
         <button
           className="lg:hidden text-white p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menü"
+          aria-label="Menyu"
         >
           <div className="w-6 h-0.5 bg-white mb-1.5 transition-all" />
           <div className="w-6 h-0.5 bg-white mb-1.5 transition-all" />
@@ -78,7 +78,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menü */}
+      {/* Mobil menyu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -99,10 +99,11 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="#yatirim"
+                href="#investisiya"
+                onClick={() => setMobileOpen(false)}
                 className="mt-2 bg-[#FF6D29] text-white font-semibold text-sm px-5 py-3 rounded-full text-center"
               >
-                Yatırım Planı (Teklif)
+                İnvestisiya Planı (Təklif)
               </a>
             </div>
           </motion.div>
@@ -111,4 +112,3 @@ export default function Navbar() {
     </nav>
   )
 }
-

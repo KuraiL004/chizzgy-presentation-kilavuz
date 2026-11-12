@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="border-t border-[#453027]/40 py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          {/* Logo */}
+          {/* Loqo */}
           <div className="flex items-center gap-4">
             <div className="text-left">
               <div className="text-white font-bold text-base leading-none">CHIZZGY</div>
@@ -16,14 +16,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Copyright */}
+          {/* Müəllif hüququ və Məxfilik */}
           <div className="text-[#BABABA] text-xs text-center sm:text-right">
-            <p>© 2024 Chizzgy Creative &amp; Strategy Agency.</p>
-            <p className="mt-1">Bu sunum Kılavuz Visual Solutions yönetimine özel hazırlanmıştır.</p>
+            <p>© 2024 Chizzgy Creative &amp; Strategy Agency. Bütün hüquqlar qorunur.</p>
+            <p className="mt-1">Bu təqdimat Kılavuz Visual Solutions rəhbərliyinə xüsusi olaraq hazırlanmışdır və məxfilik əsasına tabedir.</p>
           </div>
         </div>
       </div>
     </footer>
   )
 }
-

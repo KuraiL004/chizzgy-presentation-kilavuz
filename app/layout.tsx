@@ -12,18 +12,18 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "CHIZZGY × KILAVUZ — Kurumsal İş Birliği & Dijital Dönüşüm Sunumu",
+  title: "CHIZZGY × KILAVUZ — Korporativ Əməkdaşlıq və Rəqəmsal Transformasiya Təqdimatı",
   description:
-    "Chizzgy Creative & Strategy Agency tarafından Kılavuz Visual Solutions (Kilavuz.az) yönetimine sunulan B2B teklif ve portfolyo landing page'i. Faz 1 Kurulum Paketi 5.699 ₼ | Faz 2 Aylık Pro Paket 4.899 ₼/Ay",
+    "Chizzgy Creative & Strategy Agency tərəfindən Kılavuz Visual Solutions (Kilavuz.az) rəhbərliyinə təqdim olunan B2B təklif və portfel lending səhifəsi. Faza 1 Quraşdırma Paketi 5.699 ₼ | Faza 2 Aylıq Pro Paket 4.899 ₼ / Ay",
   keywords: [
     "Chizzgy", "Kilavuz Visual Solutions", "kilavuz.az",
-    "brandbook", "sosyal medya ajansı", "video prodüksiyon", "Bakü"
+    "brandbook", "sosial media agentliyi", "video prodakşn", "Bakı"
   ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="tr" className={`${poppins.variable} h-full`}>
+    <html lang="az" className={`${poppins.variable} h-full`}>
       <body className="min-h-full antialiased">
         {children}
       </body>

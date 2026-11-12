@@ -7,51 +7,53 @@ import { FadeUp } from './motion'
 const pillars = [
   {
     num: '01',
-    title: 'Sıfır Karmaşa ve Hız',
-    desc: 'Belirlenen renk, font, LUT ve kurgu standartları sayesinde her videoda "bu nasıl olsun?" tartışması yaşanmaz, revizyon süreçleri minimuma iner.',
+    title: 'Sıfır Qarışıqlıq və Sürət',
+    desc: 'Müəyyən edilmiş rəng, şrift, LUT və montaj standartları sayəsində hər videoda "bu necə olsun?" müzakirəsi yaşanmaz, təkrari düzəliş prosesləri minimuma enər.',
     Icon: Zap,
   },
   {
     num: '02',
-    title: 'Global Tutarlılık',
-    desc: 'İstanbul, Bakü ve Kopenhag operasyonlarının tamamında aynı kurumsal dil ve görsel kalite konuşulur.',
+    title: 'Qlobal Ardıcıllıq',
+    desc: 'İstanbul, Bakı və Kopenhagen əməliyyatlarının hamısında eyni korporativ dil və vizual keyfiyyət danışılır.',
     Icon: Globe,
   },
   {
     num: '03',
-    title: 'B2B Güven İnşası',
-    desc: 'Sayfaya giren kurumsal satın almacılar ve global partnerler, rastgele videolar değil; birbiriyle renk, ton ve kapak uyumu içinde olan prestijli bir fabrika vitrini görür.',
+    title: 'B2B Etimadın Qurulması',
+    desc: 'Səhifəyə daxil olan korporativ satınalma rəhbərləri və qlobal partnyorlar təsadüfi videolar deyil; bir-biri ilə rəng, ton və üzlük uyğunluğu içində olan nüfuzlu fabrik vitrini görər.',
     Icon: Shield,
   },
 ]
 
 export default function StratejiSection() {
   return (
-    <section id="strateji" className="py-24 relative">
+    <section id="strategiya" className="py-24 relative">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-0 w-72 h-72 bg-[#FF6D29]/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Başlık */}
+        {/* Başlıq */}
         <FadeUp className="text-center mb-6">
-          <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">Stratejik Yaklaşım</span>
+          <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">
+            Strateji Yanaşma
+          </span>
         </FadeUp>
         <FadeUp delay={0.1} className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Neden Doğrudan Çekime Başlamıyoruz?
+            Niyə Birbaşa Çəkilişə Başlamırıq?
           </h2>
         </FadeUp>
 
-        {/* Vurgu metni */}
+        {/* Vurğu mətni */}
         <FadeUp delay={0.2} className="mb-16">
           <div className="max-w-4xl mx-auto glass-card rounded-2xl p-8 border-l-4 border-l-[#FF6D29]">
             <p className="text-[#BABABA] text-base sm:text-lg leading-relaxed">
-              100&apos;den fazla global markanın resmi tedarikçisi olan böyle büyük bir yapının{' '}
-              <span className="text-white font-semibold">Kilavuz.az Instagram sayfası</span> ve dijital vitrini yönetilirken,
-              doğrudan rastgele video çekimlerine ve post paylaşımlarına başlamak kurumsal kimliğe zarar verir.
-              Çekimlere başlamadan önce kurumsal itibarınızı koruyacak ve prodüksiyon ekibimize net bir kılavuz olacak{' '}
-              <span className="text-[#FF6D29] font-semibold">Kurumsal Brandbook ve Pazarlama Stratejisi</span> inşa edilmelidir.
+              100-dən çox qlobal brendin rəsmi təchizatçısı olan belə böyük bir strukturun{' '}
+              <span className="text-white font-semibold">Kilavuz.az Instagram səhifəsi</span> və rəqəmsal vitrini idarə olunarkən,
+              birbaşa təsadüfi video çəkilişlərinə və post paylaşımlarına başlamaq korporativ imicə zərər verər.
+              Çəkilişlərə başlamazdan əvvəl korporativ nüfuzunuzu qoruyacaq və prodakşn komandamıza dəqiq bir təlimat olacaq{' '}
+              <span className="text-[#FF6D29] font-semibold">Korporativ Brandbook və Marketinq Strategiyası</span> inşa edilməlidir.
             </p>
           </div>
         </FadeUp>
