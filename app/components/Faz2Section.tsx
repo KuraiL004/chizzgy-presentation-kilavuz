@@ -236,3 +236,4 @@ export default function Faz2Section() {
     </section>
   )
 }
+
