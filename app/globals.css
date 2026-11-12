@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand-bg: #161316;
+  --color-brand-espresso: #453027;
+  --color-brand-orange: #FF6D29;
+  --color-brand-white: #FFFFFF;
+  --color-brand-silver: #BABABA;
+  --font-poppins: var(--font-poppins);
+}
+
+:root {
+  --background: #161316;
+  --foreground: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #161316;
+  color: #FFFFFF;
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #161316;
+}
+::-webkit-scrollbar-thumb {
+  background: #453027;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6D29;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+/* Orange glow utility */
+.orange-glow {
+  box-shadow: 0 0 24px rgba(255, 109, 41, 0.25);
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: linear-gradient(135deg, rgba(69, 48, 39, 0.35), rgba(22, 19, 22, 0.6));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #453027;
+}
