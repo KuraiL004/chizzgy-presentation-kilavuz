@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 const links = [
   { href: '#strategiya', label: 'Strategiya' },
   { href: '#portfel', label: 'Portfel' },
-  { href: '#faza1', label: 'Faza 1: Quraşdırma' },
-  { href: '#faza2', label: 'Faza 2: Paketlər' },
+  { href: '#faza1', label: 'Təhlil' },
+  { href: '#faza2', label: 'Yaradıcı Həllər' },
   { href: '#yolxeritesi', label: 'Yol Xəritəsi' },
 ]
 

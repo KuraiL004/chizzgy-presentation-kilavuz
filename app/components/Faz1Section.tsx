@@ -79,7 +79,7 @@ export default function Faz1Section() {
         <FadeUp className="text-center mb-3">
           <div className="inline-flex items-center gap-2 border border-[#FF6D29]/40 bg-[#FF6D29]/10 rounded-full px-4 py-1.5">
             <span className="text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
-              FAZA 1: TƏMƏL QURUCULUQ VƏ SİSTEMİN QURAŞDIRILMASI
+              TƏHLİL
             </span>
           </div>
         </FadeUp>

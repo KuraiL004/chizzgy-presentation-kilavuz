@@ -1,32 +1,33 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Calendar, Layers, ShieldCheck, Globe } from 'lucide-react'
-import { AnimatedCounter, FadeUp } from './motion'
+import { Palette, Globe, Video, TrendingUp } from 'lucide-react'
+import { FadeUp } from './motion'
 
-const stats = [
+const features = [
   {
-    value: 1995,
-    suffix: '',
-    label: "İstanbul Çağlayandan Başlayan Sənaye Mirası",
-    Icon: Calendar,
+    step: 'New-Gen Brandbook',
+    title: 'Strateji Korporativ Kimlik',
+    desc: 'Köhnəlməyən, qlobal bazarlara adaptasiya olunan yeni nəsil vizual dil və brend arxitekturası.',
+    Icon: Palette,
   },
   {
-    value: 8000,
-    suffix: ' m²',
-    label: 'Gündəlik İstehsal (5.000 m² Parça + 3.000 m² UV/Solvent Çap)',
-    Icon: Layers,
-  },
-  {
-    value: 100,
-    suffix: '+',
-    label: 'Qlobal Markanın Rəsmi Təchizatçısı və Həll Tərəfdaşı',
-    Icon: ShieldCheck,
-  },
-  {
-    text: 'TR • AZ • EU',
-    label: 'İstanbul, Bakı, Danimarka, İspaniya və Almaniya Əməliyyatları',
+    step: 'Digital Platform',
+    title: 'Qlobal Veb Təcrübə',
+    desc: 'Müştərilərinizin və investorların sizi dünyanın istənilən nöqtəsindən heyranlıqla izləyəcəyi rəqəmsal səhnə.',
     Icon: Globe,
+  },
+  {
+    step: 'Visual & Video Production',
+    title: 'Kinematoqrafik İstehsal',
+    desc: 'Sənaye gücünüzü və istehsal miqyasınızı hiss etdirən yüksək keyfiyyətli reklam və promo videoları.',
+    Icon: Video,
+  },
+  {
+    step: 'Growth Roadmap',
+    title: 'Rəqəmsal Böyümə Strategiyası',
+    desc: 'Avropa və yerli bazarlarda mövqeyinizi gücləndirəcək hədəflənmiş marketinq yol xəritəsi.',
+    Icon: TrendingUp,
   },
 ]
 
@@ -63,20 +64,19 @@ export default function HeroSection() {
         {/* Əsas Başlıq */}
         <FadeUp delay={0.1} className="text-center mb-6">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight max-w-5xl mx-auto">
-            1995-ci İldən Bu Günə Çatan{' '}
-            <span className="text-[#FF6D29]">Sənaye İstehsal Gücünün</span>{' '}
-            Qlobal və Rəqəmsal Standartlara Daşınması
+            30 İllik İstehsal Nəhənginə{' '}
+            <span className="text-[#FF6D29]">Yeni Nəsil Toxunuş</span>
           </h1>
         </FadeUp>
 
         {/* İzah Mətni */}
         <FadeUp delay={0.2} className="text-center mb-14">
           <p className="text-[#BABABA] text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-            1995-ci ildə İstanbul Çağlayanda başlayan, gündəlik 5.000 m² parça çapı və 3.000 m² rəqəmsal çap (Solvent, UV) həcminə çatan, ISO 9001 (Meyer TÜRKAK təsdiqli) keyfiyyət standartlarına sahib və Türkiyədən sonra Azərbaycan (Bakı) ilə Avropaya (Danimarka, İspaniya, Almaniya) açılan <strong className="text-white">Kılavuz Visual Solutions</strong>, sadəcə bir müəssisə deyil, beynəlxalq bir sənaye nəhəngidir.
+            Siz İstehsal Gücünü Qurduz, Biz Onu Dünyaya Danışacağıq. Xoş Gəldiniz, <strong className="text-white">Kılavuz!</strong>
           </p>
         </FadeUp>
 
-        {/* Statistika Bento Grid */}
+        {/* Xidmətlər və Transformasiya Bento Grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -85,10 +85,10 @@ export default function HeroSection() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.1 } },
           }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
         >
-          {stats.map((stat, i) => {
-            const Icon = stat.Icon
+          {features.map((item, i) => {
+            const Icon = item.Icon
             return (
               <motion.div
                 key={i}
@@ -97,23 +97,23 @@ export default function HeroSection() {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
                 }}
                 whileHover={{ y: -4, borderColor: '#FF6D29' }}
-                className="glass-card rounded-2xl p-6 cursor-default transition-all duration-300 hover:orange-glow group"
+                className="glass-card rounded-2xl p-6 cursor-default transition-all duration-300 hover:orange-glow group flex flex-col justify-between"
                 style={{ transition: 'border-color 0.3s, box-shadow 0.3s, transform 0.3s' }}
               >
-                <div className="w-10 h-10 rounded-xl bg-[#453027]/40 border border-[#453027]/60 flex items-center justify-center mb-4 text-[#FF6D29] group-hover:bg-[#FF6D29]/15 group-hover:border-[#FF6D29]/40 transition-colors">
-                  <Icon className="w-5 h-5 text-[#FF6D29]" />
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-[#453027]/40 border border-[#453027]/60 flex items-center justify-center mb-4 text-[#FF6D29] group-hover:bg-[#FF6D29]/15 group-hover:border-[#FF6D29]/40 transition-colors">
+                    <Icon className="w-5 h-5 text-[#FF6D29]" />
+                  </div>
+                  <div className="text-[#FF6D29] text-xs font-mono font-bold tracking-wide uppercase mb-2">
+                    {item.step}
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2.5 tracking-tight group-hover:text-[#FF6D29] transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#BABABA] text-xs sm:text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-                <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight">
-                  {stat.text ? (
-                    <span>{stat.text}</span>
-                  ) : (
-                    <AnimatedCounter
-                      end={stat.value!}
-                      suffix={stat.suffix}
-                    />
-                  )}
-                </div>
-                <div className="text-[#BABABA] text-xs sm:text-sm leading-snug">{stat.label}</div>
               </motion.div>
             )
           })}
