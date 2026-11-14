@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { motion } from 'framer-motion'
-import { FileSpreadsheet, Rocket, ArrowRight, TrendingUp, Sparkles, Award } from 'lucide-react'
+import { FileSpreadsheet, Rocket, ArrowRight, TrendingUp, Sparkles, Users, Award } from 'lucide-react'
 import { FadeUp } from './motion'
 import { PeakChart } from '@/components/ui/peak-chart'
 
@@ -32,6 +32,34 @@ const steps = [
     desc: 'Təsdiqlənmiş marka konstitusiyası və strategiyası əsasında ssenarilər yazılır, Bakı müəssisələrində çəkiliş günləri planlaşdırılır və Kilavuz.az hesabı qlobal standartlarda yenidən qurulur.',
     color: '#453027',
     Icon: Rocket,
+  },
+]
+
+// 3 Ədəd B2B İndikator / Göstərici Kartı
+const indicatorCards = [
+  {
+    id: 'card-1',
+    title: 'Aylıq B2B Orqanik Çatım',
+    value: '250K+',
+    subtext: 'Yalnızca hədəf kütləyə çatan optimize edilmiş illik baxış.',
+    icon: TrendingUp,
+    badge: 'Auditoriya',
+  },
+  {
+    id: 'card-2',
+    title: 'Korporativ Müraciətlər (Leads)',
+    value: '85+',
+    subtext: 'Hər ay birbaşa rəsmi təklif istəyən yeni şirkət sayı.',
+    icon: Users,
+    badge: 'Müştəri Axını',
+  },
+  {
+    id: 'card-3',
+    title: 'Satış Konversiya Artımı',
+    value: '+40%',
+    subtext: 'Premium Brandbook sayəsində görüşmələrin satışa çevrilmə dərəcəsi.',
+    icon: Award,
+    badge: 'Effektivlik',
   },
 ]
 
@@ -102,8 +130,8 @@ export default function YatirimSection() {
     <section className="py-24 relative">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#453027]/5 to-transparent" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FF6D29]/8 rounded-full blur-[120px]" />
-        <div className="absolute top-1/3 left-0 w-80 h-80 bg-[#FF6D29]/5 rounded-full blur-[130px]" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FF5722]/10 rounded-full blur-[130px]" />
+        <div className="absolute top-1/3 left-0 w-80 h-80 bg-[#FF6600]/8 rounded-full blur-[140px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -112,7 +140,7 @@ export default function YatirimSection() {
 
         {/* Başlıq */}
         <FadeUp className="text-center mb-3">
-          <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">
+          <span className="text-[#FF5722] text-xs font-semibold tracking-widest uppercase">
             İnvestisiya Cədvəli və Yol Xəritəsi
           </span>
         </FadeUp>
@@ -124,16 +152,16 @@ export default function YatirimSection() {
 
         {/* 1. İNTERAKTİV PROQNOZ VƏ NƏTİCƏ DASHBOARD-U (PEAK CHART ANIMATION) */}
         <FadeUp delay={0.12} className="mb-14">
-          <div className="glass-card-elevated rounded-3xl p-6 sm:p-10 border border-[#FF6D29]/50 relative overflow-hidden">
-            {/* Arxa plan işıqları */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#FF6D29]/15 rounded-full blur-[90px] pointer-events-none" />
-            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#453027]/40 rounded-full blur-[100px] pointer-events-none" />
+          <div className="glass-card-elevated rounded-3xl p-6 sm:p-10 border border-[#FF5722]/50 relative overflow-hidden">
+            {/* Arxa plan narıncı parıltı effekti */}
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#FF5722]/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#FF6600]/15 rounded-full blur-[110px] pointer-events-none" />
 
             <div className="relative z-10">
               {/* Üst Məlumat Başlığı */}
-              <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b border-[#453027]/60">
-                <div className="max-w-2xl">
-                  <div className="inline-flex items-center gap-2 border border-[#FF6D29]/40 bg-[#FF6D29]/10 rounded-full px-4 py-1.5 mb-4 text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
+              <div className="mb-10 pb-8 border-b border-[#453027]/60">
+                <div className="max-w-3xl mb-8">
+                  <div className="inline-flex items-center gap-2 border border-[#FF5722]/40 bg-[#FF5722]/10 rounded-full px-4 py-1.5 mb-4 text-[#FF5722] text-xs font-bold tracking-widest uppercase">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>BİZİMLƏ ƏMƏKDAŞLIĞIN BÖYÜMƏ PROQNOZU</span>
                   </div>
@@ -145,29 +173,71 @@ export default function YatirimSection() {
                   </p>
                 </div>
 
-                {/* KPI Xülasə Qutuları */}
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 shrink-0">
-                  <div className="glass-card rounded-2xl p-4 border border-[#FF6D29]/40">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-[#FF6D29] mb-1">
-                      <TrendingUp className="w-3.5 h-3.5" />
-                      <span>Auditoriya Çatımı</span>
-                    </div>
-                    <div className="text-2xl sm:text-3xl font-extrabold text-white">
-                      +450<span className="text-[#FF6D29]">%</span>
-                    </div>
-                    <div className="text-[11px] text-[#BABABA] mt-0.5">İlk 6 ayda hədəf</div>
-                  </div>
+                {/* Dəqiqliklə Hizalanmış 3 Ədəd Yan-yana / Responsiv B2B İndikator Kartı */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+                  {indicatorCards.map((card, idx) => {
+                    const IconComponent = card.icon
+                    return (
+                      <motion.div
+                        key={card.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1, duration: 0.5 }}
+                        whileHover={{ y: -4 }}
+                        className="group relative rounded-2xl p-6 sm:p-7 overflow-hidden transition-all duration-300 flex flex-col justify-between"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(69, 48, 39, 0.40) 0%, rgba(22, 19, 22, 0.85) 100%)',
+                          backdropFilter: 'blur(20px)',
+                          WebkitBackdropFilter: 'blur(20px)',
+                          border: '1px solid rgba(255, 87, 34, 0.35)',
+                          boxShadow: '0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 87, 34, 0.12)',
+                        }}
+                      >
+                        {/* Zərif arxa/alt narıncı parıltı (B2B Orange #FF5722 / #FF6600 Glow) */}
+                        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-48 h-24 bg-gradient-to-t from-[#FF5722]/25 to-transparent rounded-full blur-2xl group-hover:from-[#FF6600]/40 group-hover:h-32 transition-all duration-500 pointer-events-none" />
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-[#FF5722]/10 rounded-full blur-xl pointer-events-none" />
 
-                  <div className="glass-card rounded-2xl p-4 border border-[#453027]">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-[#BABABA] mb-1">
-                      <Award className="w-3.5 h-3.5 text-[#FF6D29]" />
-                      <span>B2B Sorğuları</span>
-                    </div>
-                    <div className="text-2xl sm:text-3xl font-extrabold text-white">
-                      10<span className="text-[#FF6D29]">x</span>
-                    </div>
-                    <div className="text-[11px] text-[#BABABA] mt-0.5">Yüksək konversiya</div>
-                  </div>
+                        <div className="relative z-10">
+                          {/* İkon və Rozet */}
+                          <div className="flex items-center justify-between gap-2 mb-4">
+                            <div className="w-10 h-10 rounded-xl bg-[#FF5722]/15 border border-[#FF5722]/40 flex items-center justify-center text-[#FF5722] group-hover:scale-110 group-hover:bg-[#FF5722]/25 transition-all duration-300 shadow-[0_0_15px_rgba(255,87,34,0.3)]">
+                              <IconComponent className="w-5 h-5 text-[#FF5722]" />
+                            </div>
+                            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF5722]/10 border border-[#FF5722]/30 text-[11px] font-semibold text-[#FF5722] uppercase tracking-wider">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5722] animate-pulse" />
+                              <span>{card.badge}</span>
+                            </div>
+                          </div>
+
+                          {/* Başlıq */}
+                          <div className="text-xs sm:text-sm font-semibold text-[#BABABA] group-hover:text-white transition-colors duration-200 mb-2">
+                            {card.title}
+                          </div>
+
+                          {/* Dəyər / Value */}
+                          <div className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight mb-3 flex items-baseline gap-1">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#FF5722] group-hover:to-[#FF6600] transition-all duration-300">
+                              {card.value}
+                            </span>
+                          </div>
+
+                          {/* İzah / Subtext */}
+                          <p className="text-xs sm:text-sm text-[#BABABA]/80 leading-relaxed group-hover:text-[#BABABA] transition-colors">
+                            {card.subtext}
+                          </p>
+                        </div>
+
+                        {/* Alt Vurğu Xətti */}
+                        <div className="relative z-10 mt-5 pt-3 border-t border-[#453027]/50 flex items-center justify-between text-[11px] text-[#BABABA]/60">
+                          <span>Chizzgy Hədəf Metrikası</span>
+                          <span className="text-[#FF5722] font-semibold flex items-center gap-1">
+                            Aktiv <span className="w-1.5 h-1.5 rounded-full bg-[#FF5722]" />
+                          </span>
+                        </div>
+                      </motion.div>
+                    )
+                  })}
                 </div>
               </div>
 
@@ -176,14 +246,14 @@ export default function YatirimSection() {
                 {/* 1-ci Qrafik: Aylıq Sosial Media Çatımı */}
                 <div className="flex flex-col items-center">
                   <div className="mb-3 text-center">
-                    <span className="text-xs font-bold text-[#FF6D29] tracking-wider uppercase">
+                    <span className="text-xs font-bold text-[#FF5722] tracking-wider uppercase">
                       İllik Orqanik Çatım Dinamikası
                     </span>
                     <h4 className="text-white font-bold text-sm">Aylıq Video İzlənmələri (Min)</h4>
                   </div>
                   <PeakChart
                     width={chartWidth}
-                    accent="#FF6D29"
+                    accent="#FF5722"
                     data={currentGrowth.reachData}
                     labels={currentGrowth.reachLabels}
                     value={currentGrowth.reachPeak}
@@ -202,14 +272,14 @@ export default function YatirimSection() {
                 {/* 2-ci Qrafik: B2B Korporativ Sifariş Sorğuları */}
                 <div className="flex flex-col items-center">
                   <div className="mb-3 text-center">
-                    <span className="text-xs font-bold text-[#FF6D29] tracking-wider uppercase">
+                    <span className="text-xs font-bold text-[#FF6600] tracking-wider uppercase">
                       B2B Müştəri Sorğuları (Leads)
                     </span>
                     <h4 className="text-white font-bold text-sm">Gələn Rəsmi Müraciətlər</h4>
                   </div>
                   <PeakChart
                     width={chartWidth}
-                    accent="#453027"
+                    accent="#FF6600"
                     data={currentGrowth.leadsData}
                     labels={currentGrowth.leadsLabels}
                     value={currentGrowth.leadsPeak}
@@ -230,10 +300,6 @@ export default function YatirimSection() {
         </FadeUp>
 
         {/* 2. İNVESTİSİYA CƏDVƏLİ VƏ YOL XƏRİTƏSİ */}
-        {/* Büdcə & Təklif Naviqasiya Hədəfləri */}
-        <div id="investisiya" className="scroll-mt-28" />
-        <div id="budce" className="scroll-mt-28" />
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
           {/* İnvestisiya Cədvəli */}
           <FadeUp delay={0.15}>
@@ -263,10 +329,10 @@ export default function YatirimSection() {
                 </div>
 
                 {/* Təhlil və Araşdırma Cəmi */}
-                <div className="bg-[#FF6D29]/10 border border-[#FF6D29]/30 rounded-xl p-4 mb-4">
+                <div className="bg-[#FF5722]/10 border border-[#FF5722]/30 rounded-xl p-4 mb-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-[#FF6D29] text-xs font-bold uppercase tracking-wide">
+                      <div className="text-[#FF5722] text-xs font-bold uppercase tracking-wide">
                         TƏHLİL VƏ ARAŞDIRMA — Quraşdırma Cəmi
                       </div>
                       <div className="text-[#BABABA] text-xs mt-0.5">Birdəfəlik Quraşdırma Paketi</div>
@@ -288,7 +354,7 @@ export default function YatirimSection() {
                       <div className="text-[#BABABA] text-xs mt-0.5">Pro Paket · 12 Reels · Premium</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-[#FF6D29] text-2xl font-extrabold">4.899 ₼</div>
+                      <div className="text-[#FF5722] text-2xl font-extrabold">4.899 ₼</div>
                       <div className="text-[#BABABA] text-xs">/ay</div>
                     </div>
                   </div>
@@ -321,14 +387,14 @@ export default function YatirimSection() {
                       )}
                       {/* Nömrə */}
                       <div
-                        className="absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                        className="absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-[0_0_12px_rgba(255,87,34,0.4)]"
                         style={{ background: step.color }}
                       >
                         {step.num}
                       </div>
                       <div>
                         <div className="flex items-center gap-2.5 mb-2">
-                          <Icon className="w-5 h-5 text-[#FF6D29]" />
+                          <Icon className="w-5 h-5 text-[#FF5722]" />
                           <h4 className="text-white font-bold text-base">{step.title}</h4>
                         </div>
                         <p className="text-[#BABABA] text-sm leading-relaxed">{step.desc}</p>
@@ -343,11 +409,11 @@ export default function YatirimSection() {
 
         {/* Son CTA */}
         <FadeUp delay={0.3}>
-          <div className="relative glass-card rounded-2xl p-10 text-center border border-[#FF6D29]/30 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#FF6D29]/5 to-transparent pointer-events-none" />
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#FF6D29] to-transparent" />
+          <div className="relative glass-card rounded-2xl p-10 text-center border border-[#FF5722]/30 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#FF5722]/5 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#FF5722] to-transparent" />
             <div className="relative">
-              <div className="inline-flex items-center gap-2 border border-[#FF6D29]/40 bg-[#FF6D29]/10 rounded-full px-4 py-1.5 mb-5 text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
+              <div className="inline-flex items-center gap-2 border border-[#FF5722]/40 bg-[#FF5722]/10 rounded-full px-4 py-1.5 mb-5 text-[#FF5722] text-xs font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(255,87,34,0.2)]">
                 STRATEJİ ƏMƏKDAŞLIQ
               </div>
               <h3 className="text-white text-2xl sm:text-3xl font-extrabold mb-3">
@@ -359,14 +425,14 @@ export default function YatirimSection() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
                   href="mailto:contact@chizzgy.com?subject=Kilavuz%20Visual%20Solutions%20B2B%20Teklif%20Tesdiqi"
-                  className="bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-bold px-10 py-4 rounded-full text-base transition-all duration-200 shadow-[0_0_30px_rgba(255,109,41,0.5)] hover:shadow-[0_0_50px_rgba(255,109,41,0.7)] w-full sm:w-auto inline-flex items-center justify-center gap-2"
+                  className="bg-[#FF5722] hover:bg-[#e64a19] text-white font-bold px-10 py-4 rounded-full text-base transition-all duration-200 shadow-[0_0_30px_rgba(255,87,34,0.5)] hover:shadow-[0_0_50px_rgba(255,87,34,0.7)] w-full sm:w-auto inline-flex items-center justify-center gap-2"
                 >
                   <span>Dərhal Əlaqə Saxlayın</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
                   href="#faza1"
-                  className="border border-[#453027] hover:border-[#FF6D29] text-[#BABABA] hover:text-white font-semibold px-10 py-4 rounded-full text-base transition-all duration-200 w-full sm:w-auto"
+                  className="border border-[#453027] hover:border-[#FF5722] text-[#BABABA] hover:text-white font-semibold px-10 py-4 rounded-full text-base transition-all duration-200 w-full sm:w-auto"
                 >
                   Paketi Yenidən İncələ
                 </a>
