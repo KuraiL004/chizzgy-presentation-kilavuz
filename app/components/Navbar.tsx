@@ -64,7 +64,7 @@ export default function Navbar() {
             href="#investisiya"
             className="bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-all duration-200 shadow-[0_0_20px_rgba(255,109,41,0.4)] hover:shadow-[0_0_30px_rgba(255,109,41,0.6)]"
           >
-            İnvestisiya Planı (Təklif)
+            Büdcə &amp; Təklif
           </a>
         </div>
 
@@ -105,7 +105,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 bg-[#FF6D29] text-white font-semibold text-sm px-5 py-3 rounded-full text-center"
               >
-                İnvestisiya Planı (Təklif)
+                Büdcə &amp; Təklif
               </a>
             </div>
           </motion.div>
