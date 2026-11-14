@@ -99,7 +99,7 @@ export default function YatirimSection() {
   const currentGrowth = GROWTH_DATA[period] || GROWTH_DATA['Aylıq']
 
   return (
-    <section id="investisiya" className="py-24 relative">
+    <section className="py-24 relative">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#453027]/5 to-transparent" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FF6D29]/8 rounded-full blur-[120px]" />
@@ -107,6 +107,9 @@ export default function YatirimSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Yol Xəritəsi Naviqasiya Hədəfi */}
+        <div id="yolxeritesi" className="scroll-mt-28" />
+
         {/* Başlıq */}
         <FadeUp className="text-center mb-3">
           <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">
@@ -227,6 +230,10 @@ export default function YatirimSection() {
         </FadeUp>
 
         {/* 2. İNVESTİSİYA CƏDVƏLİ VƏ YOL XƏRİTƏSİ */}
+        {/* Büdcə & Təklif Naviqasiya Hədəfləri */}
+        <div id="investisiya" className="scroll-mt-28" />
+        <div id="budce" className="scroll-mt-28" />
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
           {/* İnvestisiya Cədvəli */}
           <FadeUp delay={0.15}>
