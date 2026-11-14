@@ -94,7 +94,7 @@ export default function Faz2Section() {
                   <span className="ml-3 text-sm text-[#FF6D29] font-semibold">Premium Səviyyə</span>
                 </h3>
                 <p className="text-[#BABABA] text-sm mb-6 leading-relaxed max-w-lg">
-                  Faza 1-dəki Brandbook və Strategiya təsdiqləndikdən dərhal sonra, hazırlanan bələdçilərə 100% sadiq qalaraq Kilavuz.az hesabını sahəsində lider mövqeyə daşıyacaq aylıq müntəzəm prodakşn prosesimiz.
+                  Təhlil və Araşdırma mərhələsindəki Brandbook və Strategiya təsdiqləndikdən dərhal sonra, hazırlanan bələdçilərə 100% sadiq qalaraq Kilavuz.az hesabını sahəsində lider mövqeyə daşıyacaq aylıq müntəzəm prodakşn prosesimiz.
                 </p>
                 <ul className="space-y-2.5">
                   {proDeliveries.map((d, i) => (

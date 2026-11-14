@@ -5,11 +5,11 @@ import { FileSpreadsheet, Rocket, ArrowRight } from 'lucide-react'
 import { FadeUp } from './motion'
 
 const yatirimItems = [
-  { label: 'FAZA 1 (A) — Korporativ Brandbook', price: '2.500 ₼', type: 'Birdəfəlik' },
-  { label: 'FAZA 1 (B) — Media və Motion Bələdçisi', price: '1.000 ₼', type: 'Birdəfəlik' },
-  { label: 'FAZA 1 (C) — Marketinq Strategiyası (11 Bölmə)', price: '1.000 ₼', type: 'Birdəfəlik' },
+  { label: 'Korporativ Brandbook', price: '2.500 ₼', type: 'Birdəfəlik' },
+  { label: 'Media və Motion Bələdçisi', price: '1.000 ₼', type: 'Birdəfəlik' },
+  { label: 'Marketinq Strategiyası (11 Bölmə)', price: '1.000 ₼', type: 'Birdəfəlik' },
   {
-    label: 'FAZA 1 (D) — Pilot Prodakşn Testi (4 Premium Video)',
+    label: 'Pilot Prodakşn Testi (4 Premium Video)',
     price: '1.199 ₼',
     type: 'Birdəfəlik Xüsusi Dəstək Qiyməti',
     original: '1.849 ₼',
@@ -19,14 +19,14 @@ const yatirimItems = [
 const steps = [
   {
     num: '01',
-    title: 'Adım 1 - Quraşdırmanın Başlanması (Faza 1)',
+    title: 'Adım 1 - Quraşdırmanın Başlanması (Təhlil və Araşdırma)',
     desc: "Müqavilə təsdiqi ilə birlikdə Kılavuz Visual Solutions-un mövcud korporativ materialları incələnir; Brandbook, xüsusi LUT/Preset infrastrukturu və 11 bölməlik Marketinq Strategiyası hazırlanaraq rəhbərliyin təsdiqinə təqdim edilir.",
     color: '#FF6D29',
     Icon: FileSpreadsheet,
   },
   {
     num: '02',
-    title: 'Adım 2 - Prodakşn və Böyümə (Faza 2)',
+    title: 'Adım 2 - Prodakşn və Böyümə (Yaradıcı Həllər)',
     desc: 'Təsdiqlənmiş marka konstitusiyası və strategiyası əsasında ssenarilər yazılır, Bakı müəssisələrində çəkiliş günləri planlaşdırılır və Kilavuz.az hesabı qlobal standartlarda yenidən qurulur.',
     color: '#453027',
     Icon: Rocket,
@@ -82,12 +82,12 @@ export default function YatirimSection() {
                   ))}
                 </div>
 
-                {/* FAZA 1 Cəmi */}
+                {/* Təhlil və Araşdırma Cəmi */}
                 <div className="bg-[#FF6D29]/10 border border-[#FF6D29]/30 rounded-xl p-4 mb-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-[#FF6D29] text-xs font-bold uppercase tracking-wide">
-                        FAZA 1 — Quraşdırma Cəmi
+                        TƏHLİL VƏ ARAŞDIRMA — Quraşdırma Cəmi
                       </div>
                       <div className="text-[#BABABA] text-xs mt-0.5">Birdəfəlik Quraşdırma Paketi</div>
                     </div>
@@ -98,12 +98,12 @@ export default function YatirimSection() {
                   </div>
                 </div>
 
-                {/* FAZA 2 */}
+                {/* Yaradıcı Həllər */}
                 <div className="bg-[#453027]/20 border border-[#453027]/60 rounded-xl p-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-white text-xs font-bold uppercase tracking-wide">
-                        FAZA 2 — Aylıq Prodakşn
+                        YARADICI HƏLLƏR — Aylıq Prodakşn
                       </div>
                       <div className="text-[#BABABA] text-xs mt-0.5">Pro Paket · 12 Reels · Premium</div>
                     </div>

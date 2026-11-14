@@ -176,7 +176,7 @@ export default function Faz1Section() {
             <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <div className="text-[#FF6D29] text-sm font-bold uppercase tracking-widest mb-2">
-                  FAZA 1 — CƏMİ İNVESTİSİYA
+                  TƏHLİL VƏ ARAŞDIRMA — CƏMİ İNVESTİSİYA
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="text-[#BABABA] text-xl line-through">6.349 ₼</span>

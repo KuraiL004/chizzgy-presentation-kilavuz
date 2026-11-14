@@ -125,7 +125,7 @@ export default function HeroSection() {
             href="#faza1"
             className="bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 shadow-[0_0_30px_rgba(255,109,41,0.4)] hover:shadow-[0_0_50px_rgba(255,109,41,0.65)] w-full sm:w-auto text-center"
           >
-            Faza 1 Quraşdırma Paketini İncələ →
+            Təhlil və Araşdırma Paketini İncələ →
           </a>
           <a
             href="#portfel"
