@@ -35,7 +35,7 @@ const steps = [
   },
 ]
 
-// 3 Ədəd B2B İndikator / Göstərici Kartı
+// 3 Ədəd B2B İndikator / Göstərici Kartı (Yuxarıdakı kartlar)
 const indicatorCards = [
   {
     id: 'card-1',
@@ -63,60 +63,88 @@ const indicatorCards = [
   },
 ]
 
-// Kılavuz Visual Solutions üçün xüsusi böyümə proqnozu məlumatları
-const GROWTH_DATA: Record<
+// 3 Ədəd Dashboard üçün dövrlər üzrə məlumatlar:
+// 1. Aylıq B2B Orqanik Çatım (250K+)
+// 2. Korporativ Müraciətlər - Leads (85+)
+// 3. Satış Konversiya Artımı (+40%)
+const THREE_DASHBOARDS_DATA: Record<
   string,
   {
+    // 1. Orqanik Çatım
     reachData: number[]
-    leadsData: number[]
     reachLabels: string[]
+    reachValue: number
+
+    // 2. Korporativ Müraciətlər
+    leadsData: number[]
     leadsLabels: string[]
-    reachPeak: number
-    leadsPeak: number
+    leadsValue: number
+
+    // 3. Satış Konversiya Artımı
+    conversionData: number[]
+    conversionLabels: string[]
+    conversionValue: number
   }
 > = {
   Həftəlik: {
-    reachData: [12, 18, 25, 42, 68, 95, 120],
+    reachData: [25, 45, 70, 110, 160, 210, 250],
     reachLabels: ['B.e', 'Ç.a', 'Çər', 'C.a', 'Cüm', 'Şən', 'Baz'],
-    reachPeak: 120,
-    leadsData: [1, 2, 2, 4, 7, 9, 14],
+    reachValue: 250,
+
+    leadsData: [8, 15, 24, 38, 52, 68, 85],
     leadsLabels: ['B.e', 'Ç.a', 'Çər', 'C.a', 'Cüm', 'Şən', 'Baz'],
-    leadsPeak: 14,
+    leadsValue: 85,
+
+    conversionData: [12, 16, 22, 28, 33, 37, 40],
+    conversionLabels: ['B.e', 'Ç.a', 'Çər', 'C.a', 'Cüm', 'Şən', 'Baz'],
+    conversionValue: 40,
   },
   Aylıq: {
-    reachData: [15, 22, 35, 55, 80, 120, 180, 240, 310, 380, 460, 520],
+    reachData: [35, 50, 75, 105, 140, 175, 195, 215, 230, 240, 248, 250],
     reachLabels: ['Ay 1', 'Ay 2', 'Ay 3', 'Ay 4', 'Ay 5', 'Ay 6', 'Ay 7', 'Ay 8', 'Ay 9', 'Ay 10', 'Ay 11', 'Ay 12'],
-    reachPeak: 520,
-    leadsData: [3, 5, 8, 14, 22, 35, 48, 62, 75, 88, 105, 128],
+    reachValue: 250,
+
+    leadsData: [12, 18, 26, 35, 44, 53, 62, 69, 74, 78, 82, 85],
     leadsLabels: ['Ay 1', 'Ay 2', 'Ay 3', 'Ay 4', 'Ay 5', 'Ay 6', 'Ay 7', 'Ay 8', 'Ay 9', 'Ay 10', 'Ay 11', 'Ay 12'],
-    leadsPeak: 128,
+    leadsValue: 85,
+
+    conversionData: [8, 12, 16, 21, 25, 29, 32, 35, 37, 38, 39, 40],
+    conversionLabels: ['Ay 1', 'Ay 2', 'Ay 3', 'Ay 4', 'Ay 5', 'Ay 6', 'Ay 7', 'Ay 8', 'Ay 9', 'Ay 10', 'Ay 11', 'Ay 12'],
+    conversionValue: 40,
   },
   İllik: {
-    reachData: [45, 120, 280, 520],
+    reachData: [60, 125, 195, 250],
     reachLabels: ['Q1', 'Q2', 'Q3', 'Q4'],
-    reachPeak: 520,
-    leadsData: [12, 38, 75, 128],
+    reachValue: 250,
+
+    leadsData: [20, 42, 66, 85],
     leadsLabels: ['Q1', 'Q2', 'Q3', 'Q4'],
-    leadsPeak: 128,
+    leadsValue: 85,
+
+    conversionData: [14, 24, 34, 40],
+    conversionLabels: ['Q1', 'Q2', 'Q3', 'Q4'],
+    conversionValue: 40,
   },
 }
 
 export default function YatirimSection() {
   const [period, setPeriod] = React.useState('Aylıq')
-  const [chartWidth, setChartWidth] = React.useState(380)
+  const [chartWidth, setChartWidth] = React.useState(340)
 
   React.useEffect(() => {
     const handleResize = () => {
       if (typeof window === 'undefined') return
       const w = window.innerWidth
-      if (w < 480) {
-        setChartWidth(Math.max(280, w - 70))
-      } else if (w < 768) {
-        setChartWidth(380)
-      } else if (w < 1200) {
+      if (w < 440) {
+        setChartWidth(Math.max(260, w - 60))
+      } else if (w < 640) {
         setChartWidth(340)
+      } else if (w < 1024) {
+        setChartWidth(360)
+      } else if (w < 1280) {
+        setChartWidth(310)
       } else {
-        setChartWidth(380)
+        setChartWidth(340)
       }
     }
     handleResize()
@@ -124,7 +152,7 @@ export default function YatirimSection() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const currentGrowth = GROWTH_DATA[period] || GROWTH_DATA['Aylıq']
+  const currentData = THREE_DASHBOARDS_DATA[period] || THREE_DASHBOARDS_DATA['Aylıq']
 
   return (
     <section className="py-24 relative">
@@ -150,7 +178,7 @@ export default function YatirimSection() {
           </h2>
         </FadeUp>
 
-        {/* 1. İNTERAKTİV PROQNOZ VƏ NƏTİCƏ DASHBOARD-U (PEAK CHART ANIMATION) */}
+        {/* 1. İNTERAKTİV PROQNOZ VƏ 3 ƏDƏD DASHBOARD (PEAK CHARTS) */}
         <FadeUp delay={0.12} className="mb-14">
           <div className="glass-card-elevated rounded-3xl p-6 sm:p-10 border border-[#FF5722]/50 relative overflow-hidden">
             {/* Arxa plan narıncı parıltı effekti */}
@@ -173,7 +201,7 @@ export default function YatirimSection() {
                   </p>
                 </div>
 
-                {/* Dəqiqliklə Hizalanmış 3 Ədəd Yan-yana / Responsiv B2B İndikator Kartı */}
+                {/* Yuxarıdakı Dəqiqliklə Hizalanmış 3 Ədəd B2B İndikator Kartı */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
                   {indicatorCards.map((card, idx) => {
                     const IconComponent = card.icon
@@ -241,57 +269,83 @@ export default function YatirimSection() {
                 </div>
               </div>
 
-              {/* Peak Charts Yan-yana / Adaptiv */}
-              <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
-                {/* 1-ci Qrafik: Aylıq Sosial Media Çatımı */}
-                <div className="flex flex-col items-center">
+              {/* AŞAĞIDAKI 3 ƏDƏD ANIMASIYALI DASHBOARD (Yuxarıdakı 3 Metrikanı Təmsil Edir) */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start justify-items-center">
+                {/* 1-ci Dashboard: Aylıq B2B Orqanik Çatım (250K+) */}
+                <div className="flex flex-col items-center w-full">
                   <div className="mb-3 text-center">
                     <span className="text-xs font-bold text-[#FF5722] tracking-wider uppercase">
-                      İllik Orqanik Çatım Dinamikası
+                      AUDİTORİYA DİNAMİKASI
                     </span>
-                    <h4 className="text-white font-bold text-sm">Aylıq Video İzlənmələri (Min)</h4>
+                    <h4 className="text-white font-bold text-sm">Aylıq B2B Orqanik Çatım</h4>
                   </div>
                   <PeakChart
                     width={chartWidth}
                     accent="#FF5722"
-                    data={currentGrowth.reachData}
-                    labels={currentGrowth.reachLabels}
-                    value={currentGrowth.reachPeak}
-                    valueSuffix="k"
+                    data={currentData.reachData}
+                    labels={currentData.reachLabels}
+                    value={currentData.reachValue}
+                    valueSuffix="K+"
                     decimals={0}
                     title="Orqanik Video Çatımı"
-                    caption="Sistemli Brandbook & LUT effekti ilə böyümə"
+                    caption="Hədəf kütləyə çatan optimallaşdırılmış baxış"
                     updatedText="Canlı Proqnoz"
                     periods={['Həftəlik', 'Aylıq', 'İllik']}
                     period={period}
                     onPeriodChange={setPeriod}
-                    formatValue={(v) => `${Math.round(v)}k`}
+                    formatValue={(v) => `${Math.round(v)}K+`}
                   />
                 </div>
 
-                {/* 2-ci Qrafik: B2B Korporativ Sifariş Sorğuları */}
-                <div className="flex flex-col items-center">
+                {/* 2-ci Dashboard: Korporativ Müraciətlər - Leads (85+) */}
+                <div className="flex flex-col items-center w-full">
                   <div className="mb-3 text-center">
                     <span className="text-xs font-bold text-[#FF6600] tracking-wider uppercase">
-                      B2B Müştəri Sorğuları (Leads)
+                      MÜŞTƏRİ AXINI PROQNOZU
                     </span>
-                    <h4 className="text-white font-bold text-sm">Gələn Rəsmi Müraciətlər</h4>
+                    <h4 className="text-white font-bold text-sm">Korporativ Müraciətlər (Leads)</h4>
                   </div>
                   <PeakChart
                     width={chartWidth}
                     accent="#FF6600"
-                    data={currentGrowth.leadsData}
-                    labels={currentGrowth.leadsLabels}
-                    value={currentGrowth.leadsPeak}
+                    data={currentData.leadsData}
+                    labels={currentData.leadsLabels}
+                    value={currentData.leadsValue}
                     valueSuffix="+"
                     decimals={0}
                     title="Aylıq Korporativ Müraciət"
-                    caption="İstehsalat və çap sifarişləri üzrə artım"
+                    caption="Birbaşa rəsmi təklif istəyən yeni şirkətlər"
                     updatedText="Hədəf Göstəricisi"
                     periods={['Həftəlik', 'Aylıq', 'İllik']}
                     period={period}
                     onPeriodChange={setPeriod}
-                    formatValue={(v) => `${Math.round(v)} müraciət`}
+                    formatValue={(v) => `${Math.round(v)}+ müraciət`}
+                  />
+                </div>
+
+                {/* 3-cü Dashboard: Satış Konversiya Artımı (+40%) */}
+                <div className="flex flex-col items-center w-full">
+                  <div className="mb-3 text-center">
+                    <span className="text-xs font-bold text-[#FF5722] tracking-wider uppercase">
+                      EFFEKTİVLİK VƏ SATIŞ
+                    </span>
+                    <h4 className="text-white font-bold text-sm">Satış Konversiya Artımı</h4>
+                  </div>
+                  <PeakChart
+                    width={chartWidth}
+                    accent="#FF5722"
+                    data={currentData.conversionData}
+                    labels={currentData.conversionLabels}
+                    value={currentData.conversionValue}
+                    valueSuffix="%"
+                    decimals={0}
+                    title="Satışa Çevrilmə Artımı"
+                    caption="Görüşmələrin uğurlu müqaviləyə çevrilməsi"
+                    updatedText="Konversiya"
+                    periods={['Həftəlik', 'Aylıq', 'İllik']}
+                    period={period}
+                    onPeriodChange={setPeriod}
+                    formatValue={(v) => `+${Math.round(v)}%`}
                   />
                 </div>
               </div>
