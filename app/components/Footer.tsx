@@ -17,7 +17,7 @@ export default function Footer() {
 
           {/* Müəllif hüququ və Məxfilik */}
           <div className="text-[#BABABA] text-xs text-center sm:text-right">
-            <p>© 2024 Chizzgy Creative &amp; Strategy Agency. Bütün hüquqlar qorunur.</p>
+            <p>© 2026 Chizzgy Creative &amp; Strategy Agency. Bütün hüquqlar qorunur.</p>
             <p className="mt-1">Bu təqdimat Kılavuz Visual Solutions rəhbərliyinə xüsusi olaraq hazırlanmışdır və məxfilik əsasına tabedir.</p>
           </div>
         </div>
