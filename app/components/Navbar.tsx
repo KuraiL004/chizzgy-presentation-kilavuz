@@ -30,18 +30,20 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Loqo cütü */}
-        <div className="flex items-center gap-4">
-          <div className="text-left">
-            <div className="text-white font-bold text-lg leading-none tracking-tight">CHIZZGY</div>
-            <div className="text-[#BABABA] text-[10px] font-light leading-none">Creative &amp; Strategy</div>
+        {/* Loqo */}
+        <a href="#" className="flex items-center gap-2.5 sm:gap-3 group">
+          <div className="relative flex items-center justify-center">
+            <div className="absolute inset-0 bg-[#FF6D29]/20 rounded-xl blur-md group-hover:bg-[#FF6D29]/35 transition-colors" />
+            <img
+              src="/chizzgy-logo.svg"
+              alt="Chizzgy"
+              className="relative w-8 h-8 sm:w-9 sm:h-9 object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
+            />
           </div>
-          <span className="text-[#453027] text-xl font-light">×</span>
-          <div className="text-left">
-            <div className="text-[#FF6D29] font-bold text-lg leading-none tracking-tight">KILAVUZ</div>
-            <div className="text-[#BABABA] text-[10px] font-light leading-none">Visual Solutions</div>
-          </div>
-        </div>
+          <span className="text-white font-bold text-lg sm:text-xl leading-none tracking-tight group-hover:text-[#FF6D29] transition-colors">
+            CHIZZGY
+          </span>
+        </a>
 
         {/* Desktop linklər */}
         <div className="hidden lg:flex items-center gap-6">

@@ -4,16 +4,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Loqo */}
-          <div className="flex items-center gap-4">
-            <div className="text-left">
-              <div className="text-white font-bold text-base leading-none">CHIZZGY</div>
-              <div className="text-[#BABABA] text-[10px] font-light">Creative &amp; Strategy Agency</div>
-            </div>
-            <span className="text-[#453027] text-lg">×</span>
-            <div className="text-left">
-              <div className="text-[#FF6D29] font-bold text-base leading-none">KILAVUZ</div>
-              <div className="text-[#BABABA] text-[10px] font-light">Visual Solutions</div>
-            </div>
+          <div className="flex items-center gap-3">
+            <img
+              src="/chizzgy-logo.svg"
+              alt="Chizzgy"
+              className="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
+            />
+            <span className="text-white font-bold text-base sm:text-lg leading-none tracking-tight">
+              CHIZZGY
+            </span>
           </div>
 
           {/* Müəllif hüququ və Məxfilik */}
