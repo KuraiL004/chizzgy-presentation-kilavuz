@@ -136,19 +136,20 @@ function MainPlayer({ video, index }: { video: PortfolioVideo; index: number }) 
     setMuted(v.muted)
   }
 
-  const volumeFrom = (clientX: number) => {
+  // Şaquli çubuq: aşağı = 0, yuxarı = 1
+  const volumeFrom = (clientY: number) => {
     const rect = volRef.current?.getBoundingClientRect()
-    if (!rect?.width) return
-    applyVolume((clientX - rect.left) / rect.width)
+    if (!rect?.height) return
+    applyVolume((rect.bottom - clientY) / rect.height)
   }
   const onVolDown = (e: ReactPointerEvent<HTMLDivElement>) => {
     e.currentTarget.setPointerCapture(e.pointerId)
     volDragging.current = true
     setVolOpen(true)
-    volumeFrom(e.clientX)
+    volumeFrom(e.clientY)
   }
   const onVolMove = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (volDragging.current) volumeFrom(e.clientX)
+    if (volDragging.current) volumeFrom(e.clientY)
   }
   const onVolUp = (e: ReactPointerEvent<HTMLDivElement>) => {
     volDragging.current = false
@@ -156,9 +157,11 @@ function MainPlayer({ video, index }: { video: PortfolioVideo; index: number }) 
     if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
   }
   const onVolKey = (e: ReactKeyboardEvent<HTMLDivElement>) => {
-    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+    const up = e.key === 'ArrowUp' || e.key === 'ArrowRight'
+    const down = e.key === 'ArrowDown' || e.key === 'ArrowLeft'
+    if (!up && !down) return
     e.preventDefault()
-    applyVolume((muted ? 0 : volume) + (e.key === 'ArrowRight' ? 0.1 : -0.1))
+    applyVolume((muted ? 0 : volume) + (up ? 0.1 : -0.1))
   }
 
   // Brauzer əvvəlki axtarışı bitirməmiş yenisini vermirik: yalnız son mövqe saxlanılır, `seeked`-də tətbiq olunur
@@ -248,37 +251,45 @@ function MainPlayer({ video, index }: { video: PortfolioVideo; index: number }) 
               />
             </div>
           </div>
-          <div className="group/vol shrink-0 flex items-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors">
+          {/* Səs: düymənin üstündə açılan şaquli çubuq */}
+          <div className="group/vol relative shrink-0">
             <div
-              ref={volRef}
-              role="slider"
-              tabIndex={0}
-              aria-label="Səs səviyyəsi"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={Math.round(shownVolume * 100)}
-              onPointerDown={onVolDown}
-              onPointerMove={onVolMove}
-              onPointerUp={onVolUp}
-              onPointerCancel={onVolUp}
-              onKeyDown={onVolKey}
-              className={`relative h-9 flex items-center cursor-pointer touch-none overflow-hidden outline-none transition-colors duration-200 ${
-                volOpen ? 'w-20 opacity-100 ml-3.5' : 'w-0 opacity-0'
-              } group-hover/vol:w-20 group-hover/vol:opacity-100 group-hover/vol:ml-3.5 group-focus-within/vol:w-20 group-focus-within/vol:opacity-100 group-focus-within/vol:ml-3.5`}
+              className={`absolute bottom-full left-1/2 -translate-x-1/2 pb-2 transition-opacity duration-150 ${
+                volOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              } group-hover/vol:opacity-100 group-hover/vol:pointer-events-auto group-focus-within/vol:opacity-100 group-focus-within/vol:pointer-events-auto`}
             >
-              <div className="relative w-full h-1 rounded-full bg-white/20">
-                <div className="absolute inset-y-0 left-0 rounded-full bg-accent" style={{ width: `${shownVolume * 100}%` }} />
+              <div className="w-9 h-28 rounded-full bg-black/60 flex justify-center py-3.5">
                 <div
-                  className="absolute top-1/2 w-2.5 h-2.5 -translate-y-1/2 rounded-full bg-white"
-                  style={{ left: `calc(${shownVolume * 100}% - ${shownVolume * 10}px)` }}
-                />
+                  ref={volRef}
+                  role="slider"
+                  tabIndex={0}
+                  aria-label="Səs səviyyəsi"
+                  aria-orientation="vertical"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round(shownVolume * 100)}
+                  onPointerDown={onVolDown}
+                  onPointerMove={onVolMove}
+                  onPointerUp={onVolUp}
+                  onPointerCancel={onVolUp}
+                  onKeyDown={onVolKey}
+                  className="relative w-6 h-full flex justify-center cursor-pointer touch-none outline-none"
+                >
+                  <div className="relative w-1 h-full rounded-full bg-white/20">
+                    <div className="absolute inset-x-0 bottom-0 rounded-full bg-accent" style={{ height: `${shownVolume * 100}%` }} />
+                    <div
+                      className="absolute left-1/2 w-2.5 h-2.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-white"
+                      style={{ bottom: `${shownVolume * 100}%` }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             <button
               type="button"
               onClick={toggleMute}
               aria-label={muted ? 'Səsi aç' : 'Səsi bağla'}
-              className="w-9 h-9 rounded-full flex items-center justify-center"
+              className="w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition-colors"
             >
               <VolumeIcon className="w-4 h-4" />
             </button>
