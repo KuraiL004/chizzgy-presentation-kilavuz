@@ -69,29 +69,25 @@ const faz1Items = [
 
 export default function Faz1Section() {
   return (
-    <section id="faza1" className="py-24 relative">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-80 bg-[#453027]/10 blur-[100px]" />
-      </div>
-
+    <section id="faza1" className="pt-28 pb-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Başlıq */}
-        <FadeUp className="text-center mb-3">
-          <div className="inline-flex items-center gap-2 border border-[#FF6D29]/40 bg-[#FF6D29]/10 rounded-full px-4 py-1.5">
-            <span className="text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
+        <FadeUp className="text-left mb-5">
+          <div className="inline-flex items-center gap-3 before:block before:w-6 before:h-px before:bg-accent">
+            <span className="text-accent text-[13px] font-medium">
               TƏHLİL
             </span>
           </div>
         </FadeUp>
-        <FadeUp delay={0.1} className="text-center mb-4">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        <FadeUp delay={0.1} className="text-left mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink max-w-4xl">
             Korporativ Brandbook, Marketinq Strategiyası
-            <br className="hidden sm:block" />
+            <br />
             və 4 Video Pilot Prodakşn
           </h2>
         </FadeUp>
-        <FadeUp delay={0.15} className="text-center mb-14">
-          <p className="text-[#BABABA] text-sm sm:text-base max-w-2xl mx-auto">
+        <FadeUp delay={0.15} className="text-left mb-14">
+          <p className="text-muted text-base sm:text-[1.0625rem] leading-relaxed max-w-[60ch]">
             Prodakşn mərhələsinə keçməzdən əvvəl brendin bütün fiziki və rəqəmsal aktivlərini vahid standart altına gətirən quraşdırma paketimizdir.
           </p>
         </FadeUp>
@@ -102,7 +98,7 @@ export default function Faz1Section() {
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6"
         >
           {faz1Items.map((item, i) => {
             const Icon = item.Icon
@@ -114,52 +110,52 @@ export default function Faz1Section() {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
                 }}
                 whileHover={{ y: -3 }}
-                className={`glass-card rounded-2xl p-8 group transition-all duration-300 ${
-                  item.isHighlight ? 'border-[#FF6D29]/60' : ''
+                className={`glass-card rounded-2xl p-7 sm:p-8 group flex flex-col ${
+                  item.isHighlight ? 'border-accent/60 bg-raised' : ''
                 }`}
                 style={{ transition: 'transform 0.3s, border-color 0.3s, box-shadow 0.3s' }}
               >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-5">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#453027]/40 border border-[#453027]/70 flex items-center justify-center text-[#FF6D29] group-hover:bg-[#FF6D29]/15 group-hover:border-[#FF6D29]/40 transition-colors">
-                      <Icon className="w-6 h-6 text-[#FF6D29]" />
+                    <div className="w-11 h-11 shrink-0 rounded-xl bg-bg/60 border border-line flex items-center justify-center text-accent">
+                      <Icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
                     </div>
                     <div>
-                      <div className="text-[#FF6D29] text-xs font-bold font-mono mb-0.5">
+                      <div className="text-muted text-[13px] font-medium mb-1">
                         BÖLMƏ {item.label}
                       </div>
-                      <h3 className="text-white font-bold text-base leading-tight max-w-xs">{item.title}</h3>
+                      <h3 className="text-ink font-bold text-lg leading-snug max-w-sm">{item.title}</h3>
                     </div>
                   </div>
                 </div>
 
                 {/* Məzmun siyahısı */}
-                <ul className="space-y-2.5 mb-6">
+                <ul className="space-y-3 mb-8 flex-1">
                   {item.items.map((it, j) => (
-                    <li key={j} className="flex items-start gap-2.5 text-[#BABABA] text-sm leading-snug">
-                      <CheckCircle2 className="w-4 h-4 text-[#FF6D29] mt-0.5 shrink-0" />
+                    <li key={j} className="flex items-start gap-3 text-muted text-[15px] leading-snug">
+                      <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 shrink-0" strokeWidth={1.75} />
                       <span>{it}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Qiymət */}
-                <div className="border-t border-[#453027]/60 pt-5 flex items-end justify-between">
+                <div className="border-t border-line pt-6 flex items-end justify-between gap-4">
                   <div>
                     {item.originalPrice && (
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[#BABABA] text-sm line-through">{item.originalPrice}</span>
-                        <span className="text-xs bg-[#FF6D29]/20 text-[#FF6D29] rounded-full px-2 py-0.5 font-semibold">
+                        <span className="text-muted text-sm line-through tabular-nums whitespace-nowrap">{item.originalPrice}</span>
+                        <span className="text-[13px] text-accent font-medium">
                           -{item.discount}
                         </span>
                       </div>
                     )}
-                    <div className="text-white text-2xl font-extrabold">{item.price}</div>
-                    <div className="text-[#BABABA] text-xs mt-0.5">{item.type}</div>
+                    <div className="font-display [font-stretch:112%] text-ink text-3xl font-extrabold tabular-nums whitespace-nowrap">{item.price}</div>
+                    <div className="text-muted text-[13px] mt-1">{item.type}</div>
                   </div>
                   {item.isHighlight && (
-                    <div className="bg-[#FF6D29] text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                    <div className="bg-accent text-bg text-[12px] font-semibold px-2.5 py-1 rounded-sm whitespace-nowrap">
                       XÜSUSİ TƏKLİF
                     </div>
                   )}
@@ -171,24 +167,23 @@ export default function Faz1Section() {
 
         {/* FAZA 1 CƏMİ */}
         <FadeUp delay={0.2}>
-          <div className="glass-card rounded-2xl p-8 border border-[#FF6D29]/40 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF6D29]/8 rounded-full blur-[80px] pointer-events-none" />
+          <div className="glass-card-elevated rounded-3xl p-8 sm:p-10 relative overflow-hidden">
             <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
-                <div className="text-[#FF6D29] text-sm font-bold uppercase tracking-widest mb-2">
+                <div className="text-accent text-[13px] font-medium mb-3">
                   TƏHLİL VƏ ARAŞDIRMA — CƏMİ İNVESTİSİYA
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-[#BABABA] text-xl line-through">6.349 ₼</span>
-                  <span className="text-white text-4xl sm:text-5xl font-extrabold">5.699 ₼</span>
+                  <span className="font-display text-muted text-xl line-through decoration-1 tabular-nums">6.349 ₼</span>
+                  <span className="font-display [font-stretch:118%] text-ink text-5xl sm:text-6xl font-extrabold tabular-nums tracking-[-0.03em]">5.699 ₼</span>
                 </div>
-                <div className="text-[#BABABA] text-sm mt-1">
+                <div className="text-muted text-sm mt-3">
                   Birdəfəlik Quraşdırma · Brandbook · Strategiya · 4 Pilot Video
                 </div>
               </div>
               <a
                 href="#investisiya"
-                className="shrink-0 bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 shadow-[0_0_30px_rgba(255,109,41,0.4)] hover:shadow-[0_0_50px_rgba(255,109,41,0.65)] text-center whitespace-nowrap"
+                className="shrink-0 bg-accent hover:bg-accent-press text-bg font-semibold px-7 py-4 rounded-md text-base transition-colors duration-200 text-center whitespace-nowrap"
               >
                 Təklifi Təsdiq Et →
               </a>

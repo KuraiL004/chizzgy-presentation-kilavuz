@@ -54,67 +54,60 @@ export default function Faz2Section() {
   const [activeLevel, setActiveLevel] = useState<Level>('Premium')
 
   return (
-    <section id="faza2" className="py-24 relative">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#FF6D29]/6 rounded-full blur-[120px]" />
-        <div className="absolute top-1/4 right-0 w-72 h-72 bg-[#453027]/20 rounded-full blur-[100px]" />
-      </div>
-
+    <section id="faza2" className="pt-28 pb-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Başlıq */}
-        <FadeUp className="text-center mb-3">
-          <div className="inline-flex items-center gap-2 border border-[#453027] bg-[#453027]/20 rounded-full px-4 py-1.5">
-            <span className="text-[#FF6D29] text-xs font-bold tracking-widest uppercase">
+        <FadeUp className="text-left mb-5">
+          <div className="inline-flex items-center gap-3 before:block before:w-6 before:h-px before:bg-accent">
+            <span className="text-accent text-[13px] font-medium">
               YARADICI HƏLLƏR
             </span>
           </div>
         </FadeUp>
-        <FadeUp delay={0.1} className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        <FadeUp delay={0.1} className="text-left mb-14">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink max-w-4xl">
             Aylıq Paketlər və Keyfiyyət Səviyyələri
           </h2>
         </FadeUp>
 
         {/* Təklif olunan əsas paket — PRO 12 PREMIUM */}
         <FadeUp delay={0.15} className="mb-14">
-          <div className="relative glass-card rounded-2xl p-8 border border-[#FF6D29]/50 overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#FF6D29]/8 rounded-full blur-[80px] pointer-events-none" />
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#FF6D29] to-transparent" />
+          <div className="relative glass-card-elevated rounded-3xl p-8 sm:p-10 overflow-hidden">
 
             {/* Rozet */}
-            <div className="inline-flex items-center gap-2 bg-[#FF6D29] text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6">
-              <Star className="w-3.5 h-3.5 fill-white" />
+            <div className="inline-flex items-center gap-2 bg-accent text-bg text-[12px] font-semibold px-2.5 py-1 rounded-sm mb-7">
+              <Star className="w-3.5 h-3.5 fill-current" />
               <span>KILAVUZ.AZ ÜÇÜN TÖVSİYƏ OLUNAN ƏSAS PRODAKŞN PAKETİ</span>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-8">
               <div className="flex-1">
-                <h3 className="text-white text-2xl sm:text-3xl font-extrabold mb-2">
+                <h3 className="text-ink text-2xl sm:text-3xl font-extrabold mb-3">
                   PRO PAKET — 12 REELS
-                  <span className="ml-3 text-sm text-[#FF6D29] font-semibold">Premium Səviyyə</span>
+                  <span className="ml-3 font-sans text-sm text-accent font-medium [font-stretch:100%]">Premium Səviyyə</span>
                 </h3>
-                <p className="text-[#BABABA] text-sm mb-6 leading-relaxed max-w-lg">
+                <p className="text-muted text-[15px] mb-7 leading-relaxed max-w-[60ch]">
                   Təhlil və Araşdırma mərhələsindəki Brandbook və Strategiya təsdiqləndikdən dərhal sonra, hazırlanan bələdçilərə 100% sadiq qalaraq Kilavuz.az hesabını sahəsində lider mövqeyə daşıyacaq aylıq müntəzəm prodakşn prosesimiz.
                 </p>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {proDeliveries.map((d, i) => (
-                    <li key={i} className="flex items-start gap-2 text-[#BABABA] text-sm">
-                      <Check className="w-4 h-4 text-[#FF6D29] mt-0.5 shrink-0 stroke-[3]" />
+                    <li key={i} className="flex items-start gap-3 text-muted text-[15px] leading-snug">
+                      <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" strokeWidth={2} />
                       <span>{d}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="lg:w-56 flex flex-col items-center lg:items-end justify-between">
-                <div className="text-center lg:text-right">
-                  <div className="text-[#BABABA] text-sm mb-1">Aylıq İnvestisiya</div>
-                  <div className="text-[#FF6D29] text-5xl font-extrabold">4.899 ₼</div>
-                  <div className="text-[#BABABA] text-sm mt-1">/ Ay</div>
+              <div className="lg:w-72 shrink-0 flex flex-col items-start lg:items-end justify-between">
+                <div className="text-left lg:text-right">
+                  <div className="text-muted text-sm mb-1">Aylıq İnvestisiya</div>
+                  <div className="font-display [font-stretch:118%] text-ink text-5xl font-extrabold tabular-nums tracking-[-0.03em] whitespace-nowrap">4.899 ₼</div>
+                  <div className="text-muted text-sm mt-1">/ Ay</div>
                 </div>
                 <a
                   href="#investisiya"
-                  className="mt-6 bg-[#FF6D29] hover:bg-[#e85d1f] text-white font-bold px-6 py-3 rounded-full text-sm transition-all duration-200 shadow-[0_0_20px_rgba(255,109,41,0.4)] whitespace-nowrap"
+                  className="mt-8 bg-accent hover:bg-accent-press text-bg font-semibold px-6 py-3.5 rounded-md text-sm transition-colors duration-200 whitespace-nowrap"
                 >
                   Paketi Seç →
                 </a>
@@ -127,17 +120,17 @@ export default function Faz2Section() {
         <FadeUp delay={0.2}>
           <div className="glass-card rounded-2xl overflow-hidden">
             {/* Səviyyə Keçidi */}
-            <div className="p-6 border-b border-[#453027]/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <h3 className="text-white font-bold text-lg">Bütün Paketləri Müqayisə Et</h3>
-              <div className="flex bg-[#161316] rounded-full p-1 border border-[#453027]">
+            <div className="p-6 border-b border-line/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <h3 className="text-ink font-bold text-lg">Bütün Paketləri Müqayisə Et</h3>
+              <div className="flex bg-bg rounded-lg p-1 border border-line">
                 {levels.map((l) => (
                   <button
                     key={l}
                     onClick={() => setActiveLevel(l)}
-                    className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                    className={`px-5 py-2 rounded-md text-sm font-semibold transition-colors duration-200 ${
                       activeLevel === l
-                        ? 'bg-[#FF6D29] text-white shadow-[0_0_15px_rgba(255,109,41,0.4)]'
-                        : 'text-[#BABABA] hover:text-white'
+                        ? 'bg-accent text-bg'
+                        : 'text-muted hover:text-white'
                     }`}
                   >
                     {l}
@@ -150,10 +143,10 @@ export default function Faz2Section() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-[#453027]/40">
-                    <th className="text-left p-5 text-[#BABABA] text-sm font-semibold">Paket</th>
-                    <th className="text-center p-5 text-[#BABABA] text-sm font-semibold">Reels Sayı</th>
-                    <th className="text-center p-5 text-[#FF6D29] text-sm font-bold">
+                  <tr className="border-b border-line/40">
+                    <th className="text-left p-5 text-muted text-sm font-semibold">Paket</th>
+                    <th className="text-center p-5 text-muted text-sm font-semibold">Reels Sayı</th>
+                    <th className="text-center p-5 text-accent text-sm font-bold">
                       <AnimatePresence mode="wait">
                         <motion.span
                           key={activeLevel}
@@ -166,7 +159,7 @@ export default function Faz2Section() {
                         </motion.span>
                       </AnimatePresence>
                     </th>
-                    <th className="text-left p-5 text-[#BABABA] text-sm font-semibold hidden md:table-cell">
+                    <th className="text-left p-5 text-muted text-sm font-semibold hidden md:table-cell">
                       Məzmun və Təhvil Detalları
                     </th>
                   </tr>
@@ -178,31 +171,31 @@ export default function Faz2Section() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: i * 0.05 }}
-                      className={`border-b border-[#453027]/30 last:border-0 transition-colors duration-200 ${
-                        pkg.isRecommended ? 'bg-[#FF6D29]/5' : 'hover:bg-[#453027]/10'
+                      className={`border-b border-line/30 last:border-0 transition-colors duration-200 ${
+                        pkg.isRecommended ? 'bg-accent/5' : 'hover:bg-line/10'
                       }`}
                     >
                       <td className="p-5">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-[#453027]/40 border border-[#453027] flex items-center justify-center text-xs font-mono font-bold text-[#FF6D29]">
+                          <div className="w-9 h-9 rounded-md bg-raised flex items-center justify-center text-sm font-display tabular-nums font-bold text-ink">
                             {pkg.reels}
                           </div>
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="text-white font-bold">{pkg.name}</span>
+                              <span className="text-ink font-bold">{pkg.name}</span>
                               {pkg.isRecommended && (
-                                <span className="text-[10px] bg-[#FF6D29] text-white rounded-full px-2 py-0.5 font-bold flex items-center gap-1">
-                                  <Flame className="w-2.5 h-2.5 fill-white" />
+                                <span className="text-[11px] bg-accent text-bg rounded-sm px-1.5 py-0.5 font-semibold flex items-center gap-1 whitespace-nowrap">
+                                  <Flame className="w-2.5 h-2.5 fill-current" />
                                   TÖVSİYƏ EDİLƏN
                                 </span>
                               )}
                             </div>
-                            <span className="text-[#BABABA]/60 text-xs">{pkg.levelTag}</span>
+                            <span className="text-muted/60 text-xs">{pkg.levelTag}</span>
                           </div>
                         </div>
                       </td>
                       <td className="p-5 text-center">
-                        <span className="text-[#BABABA] text-sm font-mono font-semibold">{pkg.reels} Video</span>
+                        <span className="text-muted text-sm tabular-nums font-medium">{pkg.reels} Video</span>
                       </td>
                       <td className="p-5 text-center">
                         <AnimatePresence mode="wait">
@@ -212,19 +205,19 @@ export default function Faz2Section() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
                             transition={{ duration: 0.2 }}
-                            className={`font-extrabold text-lg ${
+                            className={`font-display [font-stretch:112%] font-extrabold text-lg tabular-nums whitespace-nowrap ${
                               pkg.isRecommended && activeLevel === 'Premium'
-                                ? 'text-[#FF6D29]'
+                                ? 'text-accent'
                                 : 'text-white'
                             }`}
                           >
                             {pkg.prices[activeLevel]}
                           </motion.span>
                         </AnimatePresence>
-                        <div className="text-[#BABABA] text-xs">/ay</div>
+                        <div className="text-muted text-xs">/ay</div>
                       </td>
                       <td className="p-5 hidden md:table-cell">
-                        <span className="text-[#BABABA] text-sm">{pkg.items}</span>
+                        <span className="text-muted text-sm">{pkg.items}</span>
                       </td>
                     </motion.tr>
                   ))}
@@ -233,8 +226,8 @@ export default function Faz2Section() {
             </div>
 
             {/* Düzəliş qeydi */}
-            <div className="p-5 border-t border-[#453027]/40 bg-[#453027]/10">
-              <p className="text-[#BABABA] text-xs">
+            <div className="p-5 border-t border-line/40 bg-line/10">
+              <p className="text-muted text-xs">
                 <span className="text-white font-semibold">Əlavə Düzəliş Qeydi</span> (3-cü düzəliş və sonrası):
                 Basic 20 ₼/video · Standart 35 ₼/video · Premium 50 ₼/video · Hero Montaj 100 ₼/video
               </p>

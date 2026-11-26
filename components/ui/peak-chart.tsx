@@ -73,6 +73,40 @@ const DOT_BOTTOM = "#d0e4fd"
 const DOT_GLOW = "#287dff"
 const PULSE_COLOR = "#78afff"
 
+/* "studio" variant: a flat graphite card with a hairline edge — no halo, no glow field.
+   Colours are drawn as-is (no hue shift); the line and dot use the accent directly. */
+const STUDIO_CR = 22
+const STUDIO = {
+  surfaceTop: "#221D1D",
+  surfaceBottom: "#1A1617",
+  edge: "#3B302B",
+  grid: "#A8A19B",
+  dotRing: "#141214",
+}
+type UiTheme = {
+  updated: string; pillBg: string; pillText: string; period: string; chevron: string
+  menuBg: string; menuBorder: string; menuShadow: string; menuBlur: string
+  optActiveBg: string; optHoverBg: string; optActive: string; opt: string; check: string
+  readBg: string; readBorder: string; readBlur: string; readVal: string; readLab: string
+  title: string; value: string; caption: string
+}
+const GLOW_UI: UiTheme = {
+  updated: "#99a3b6", pillBg: "rgba(255,255,255,0.13)", pillText: "#b9cdf2", period: "#acc1e7", chevron: "#9fb7e0",
+  menuBg: "rgba(20,34,64,0.55)", menuBorder: "1px solid rgba(255,255,255,0.12)",
+  menuShadow: "0 18px 40px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)", menuBlur: "blur(18px) saturate(150%)",
+  optActiveBg: "rgba(255,255,255,0.09)", optHoverBg: "rgba(255,255,255,0.06)", optActive: "#e6eeff", opt: "#aebcd6", check: "#9fc0ff",
+  readBg: "rgba(18,36,72,0.55)", readBorder: "1px solid rgba(160,195,255,0.18)", readBlur: "blur(10px)", readVal: "#fff", readLab: "#9fb0cc",
+  title: "#9298a5", value: "#fff", caption: "#9299a8",
+}
+const STUDIO_UI: UiTheme = {
+  updated: "#A8A19B", pillBg: "rgba(242,238,233,0.07)", pillText: "#D9D3CC", period: "#D9D3CC", chevron: "#A8A19B",
+  menuBg: "#2A2322", menuBorder: "1px solid #3B302B",
+  menuShadow: "0 18px 40px -22px rgba(8,5,4,0.85)", menuBlur: "none",
+  optActiveBg: "rgba(242,238,233,0.07)", optHoverBg: "rgba(242,238,233,0.04)", optActive: "#F2EEE9", opt: "#A8A19B", check: "#F06A2E",
+  readBg: "#141214", readBorder: "1px solid #3B302B", readBlur: "none", readVal: "#F2EEE9", readLab: "#A8A19B",
+  title: "#A8A19B", value: "#F2EEE9", caption: "#8F8781",
+}
+
 const MONTH_DATA = [60, 75, 91, 110, 120, 122, 116, 106, 96, 89, 88, 95, 112, 150, 339, 384, 400, 388, 318, 240, 182, 146, 126, 117, 115, 117, 121, 127, 134, 143]
 const SERIES: Record<string, { data: number[]; labels: string[] }> = {
   Weekly: { data: [128, 152, 141, 226, 384, 262, 214], labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] },
@@ -122,6 +156,8 @@ export interface PeakChartProps {
   formatValue?: (value: number) => string
   /** Font stack for every label. The default is the system UI face, widened where the platform allows. */
   font?: string
+  /** "glow" (default) paints the luminous field and halo; "studio" draws a flat graphite card with a hairline edge and the accent used directly for the line and dot. */
+  variant?: "glow" | "studio"
   /** Extra class name on the outer element. */
   className?: string
   /** Extra inline styles on the outer element. */
@@ -282,14 +318,14 @@ function buildHalo(px: number) {
 }
 
 /** Faint grid that fades out upward and toward the sides. */
-function buildGrid(px: number) {
+function buildGrid(px: number, color: string = GRID_COLOR) {
   const w = Math.round(px)
   const h = Math.round(px * HN)
   const c = makeCanvas(w, h)
   const ctx = c.getContext("2d")!
   const s = px / CW
   ctx.scale(s, s)
-  ctx.strokeStyle = GRID_COLOR
+  ctx.strokeStyle = color
   ctx.lineWidth = 1
   ctx.beginPath()
   for (let k = -6; k <= 6; k++) {
@@ -459,9 +495,13 @@ export function PeakChart({
   backdrop = false,
   formatValue,
   font = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  variant = "glow",
   className,
   style,
 }: PeakChartProps) {
+  const studio = variant === "studio"
+  const cr = studio ? STUDIO_CR : CR
+  const T = studio ? STUDIO_UI : GLOW_UI
   const [innerPeriod, setInnerPeriod] = React.useState(defaultPeriod)
   const current = period ?? innerPeriod
   const [open, setOpen] = React.useState(false)
@@ -563,8 +603,9 @@ export function PeakChart({
     canvas.style.height = `${canvas.height / dpr}px`
     const fieldPx = Math.min(width * dpr, Math.max(width, 700))
     const { rest: field, lift: bright } = buildField(fieldPx, 11)
-    const grid = buildGrid(width * dpr)
+    const grid = buildGrid(width * dpr, studio ? STUDIO.grid : GRID_COLOR)
     const halo = buildHalo(width)
+    const lineColor = studio ? accent : LINE_COLOR
     const tLand = (frac: number) => T_DRAW0 + T_DRAW * inverseEase(frac)
 
     let clock = reduce ? T_REST + 0.01 : 0
@@ -575,11 +616,11 @@ export function PeakChart({
 
     const roundRect = () => {
       ctx.beginPath()
-      ctx.moveTo(CR, 0)
-      ctx.arcTo(CW, 0, CW, CH, CR)
-      ctx.arcTo(CW, CH, 0, CH, CR)
-      ctx.arcTo(0, CH, 0, 0, CR)
-      ctx.arcTo(0, 0, CW, 0, CR)
+      ctx.moveTo(cr, 0)
+      ctx.arcTo(CW, 0, CW, CH, cr)
+      ctx.arcTo(CW, CH, 0, CH, cr)
+      ctx.arcTo(0, CH, 0, 0, cr)
+      ctx.arcTo(0, 0, CW, 0, cr)
       ctx.closePath()
     }
 
@@ -639,17 +680,25 @@ export function PeakChart({
       ctx.setTransform(s, 0, 0, s, bx, by)
       ctx.imageSmoothingEnabled = true
       ctx.imageSmoothingQuality = "high"
-      ctx.drawImage(halo, -BX, -BY, CW + 2 * BX, CH + 2 * BY)
+      if (!studio) ctx.drawImage(halo, -BX, -BY, CW + 2 * BX, CH + 2 * BY)
       ctx.save()
       roundRect()
       ctx.clip()
-      ctx.drawImage(field, 0, 0, CW, CH)
-      if (F.breath > 0.001) {
-        ctx.globalAlpha = F.breath
-        ctx.drawImage(bright, 0, 0, CW, CH)
+      if (studio) {
+        const sg = ctx.createLinearGradient(0, 0, 0, CH)
+        sg.addColorStop(0, STUDIO.surfaceTop)
+        sg.addColorStop(1, STUDIO.surfaceBottom)
+        ctx.fillStyle = sg
+        ctx.fillRect(0, 0, CW, CH)
+      } else {
+        ctx.drawImage(field, 0, 0, CW, CH)
+        if (F.breath > 0.001) {
+          ctx.globalAlpha = F.breath
+          ctx.drawImage(bright, 0, 0, CW, CH)
+        }
       }
       if (F.grid > 0.001) {
-        ctx.globalAlpha = F.grid
+        ctx.globalAlpha = F.grid * (studio ? 0.45 : 1)
         ctx.drawImage(grid, 0, 0, CW, CH)
       }
       ctx.globalAlpha = 1
@@ -666,10 +715,10 @@ export function PeakChart({
           let a = lineAlpha(x - peakX - LINE_CENTER)
           if (head > 0.001 && x <= x1 + 10) a = Math.max(a, head * Math.exp(-Math.max(0, x1 - x) / 70))
           if (F.erase > 0) a *= smooth((x - x0) / 60)
-          g.addColorStop(i / 54, rgba(LINE_COLOR, a))
+          g.addColorStop(i / 54, rgba(lineColor, studio ? 0.35 + 0.65 * a : a))
         }
         ctx.strokeStyle = g
-        ctx.lineWidth = LINE_W
+        ctx.lineWidth = studio ? 4 : LINE_W
         ctx.lineCap = "round"
         ctx.lineJoin = "round"
         ctx.beginPath()
@@ -692,27 +741,37 @@ export function PeakChart({
         ctx.translate(dx, dy)
         ctx.scale(F.dotS, F.dotS)
         const boost = pulse >= 0 ? Math.sin(Math.PI * Math.min(1, pulse * 1.6)) : 0
-        // halo
-        const hg = ctx.createRadialGradient(0, 0, 0, 0, 0, 30)
-        const ha = (a: number) => rgba(DOT_GLOW, Math.min(1, a * (1 + 0.9 * boost)))
-        hg.addColorStop(0, ha(0.47)); hg.addColorStop(15 / 30, ha(0.47)); hg.addColorStop(17 / 30, ha(0.41))
-        hg.addColorStop(19 / 30, ha(0.31)); hg.addColorStop(21 / 30, ha(0.17)); hg.addColorStop(23 / 30, ha(0.1))
-        hg.addColorStop(25 / 30, ha(0.06)); hg.addColorStop(27 / 30, ha(0.03)); hg.addColorStop(1, ha(0))
-        ctx.fillStyle = hg
-        ctx.beginPath(); ctx.arc(0, 0, 30, 0, Math.PI * 2); ctx.fill()
+        if (!studio) {
+          // halo
+          const hg = ctx.createRadialGradient(0, 0, 0, 0, 0, 30)
+          const ha = (a: number) => rgba(DOT_GLOW, Math.min(1, a * (1 + 0.9 * boost)))
+          hg.addColorStop(0, ha(0.47)); hg.addColorStop(15 / 30, ha(0.47)); hg.addColorStop(17 / 30, ha(0.41))
+          hg.addColorStop(19 / 30, ha(0.31)); hg.addColorStop(21 / 30, ha(0.17)); hg.addColorStop(23 / 30, ha(0.1))
+          hg.addColorStop(25 / 30, ha(0.06)); hg.addColorStop(27 / 30, ha(0.03)); hg.addColorStop(1, ha(0))
+          ctx.fillStyle = hg
+          ctx.beginPath(); ctx.arc(0, 0, 30, 0, Math.PI * 2); ctx.fill()
+        }
         if (pulse >= 0) {
           const r = DOT_R + 26 * easeOut(pulse)
-          ctx.strokeStyle = rgba(PULSE_COLOR, 0.55 * (1 - pulse) * (1 - pulse))
+          ctx.strokeStyle = rgba(studio ? accent : PULSE_COLOR, 0.55 * (1 - pulse) * (1 - pulse))
           ctx.lineWidth = 2.2 * (1 - pulse) + 0.6
           ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.stroke()
         }
         // body
-        const bg = ctx.createLinearGradient(0, -DOT_R, 0, DOT_R)
-        bg.addColorStop(0, DOT_TOP)
-        bg.addColorStop(0.45, DOT_MID)
-        bg.addColorStop(1, DOT_BOTTOM)
-        ctx.fillStyle = bg
-        ctx.beginPath(); ctx.arc(0, 0, DOT_R, 0, Math.PI * 2); ctx.fill()
+        if (studio) {
+          // solid accent disc with a background-coloured ring that cuts it out of the line
+          ctx.fillStyle = STUDIO.dotRing
+          ctx.beginPath(); ctx.arc(0, 0, DOT_R * 0.85 + 4, 0, Math.PI * 2); ctx.fill()
+          ctx.fillStyle = accent
+          ctx.beginPath(); ctx.arc(0, 0, DOT_R * 0.85, 0, Math.PI * 2); ctx.fill()
+        } else {
+          const bg = ctx.createLinearGradient(0, -DOT_R, 0, DOT_R)
+          bg.addColorStop(0, DOT_TOP)
+          bg.addColorStop(0.45, DOT_MID)
+          bg.addColorStop(1, DOT_BOTTOM)
+          ctx.fillStyle = bg
+          ctx.beginPath(); ctx.arc(0, 0, DOT_R, 0, Math.PI * 2); ctx.fill()
+        }
         ctx.setTransform(s, 0, 0, s, bx, by)
         ctx.globalAlpha = 1
 
@@ -734,6 +793,13 @@ export function PeakChart({
         }
       }
       ctx.restore()
+      if (studio) {
+        // hairline edge, 1 CSS px regardless of card scale
+        ctx.strokeStyle = STUDIO.edge
+        ctx.lineWidth = 1 / u
+        roundRect()
+        ctx.stroke()
+      }
     }
 
     const busy = () => {
@@ -771,7 +837,7 @@ export function PeakChart({
       if (raf) cancelAnimationFrame(raf)
       L.kick = () => {}
     }
-  }, [width, u])
+  }, [width, u, studio, cr, accent])
 
   // close the dropdown on outside press and Escape
   React.useEffect(() => {
@@ -812,6 +878,7 @@ export function PeakChart({
 
   // Any accent other than the one the artwork is painted in hue-shifts (and re-saturates) the canvas.
   const tint = (() => {
+    if (studio) return undefined
     const a = hslOf(accent), b = hslOf(BASE_ACCENT)
     if (!a || !b) return undefined
     let d = a[0] - b[0]
@@ -831,7 +898,7 @@ export function PeakChart({
     <div
       ref={cardRef}
       data-peak-chart=""
-      style={{ position: "relative", width, height: width * HN, borderRadius: px(CR), flex: "none", fontFamily: font, color: "#fff", userSelect: "none", WebkitUserSelect: "none" }}
+      style={{ position: "relative", width, height: width * HN, borderRadius: px(cr), flex: "none", fontFamily: font, color: T.value, userSelect: "none", WebkitUserSelect: "none" }}
     >
       <canvas
         ref={canvasRef}
@@ -846,7 +913,7 @@ export function PeakChart({
         onPointerCancel={onLeave}
         style={{ position: "absolute", left: 0, top: px(96), width: "100%", height: px(330), touchAction: "pan-y", cursor: "crosshair" }}
       />
-      <p data-part="updated" style={{ ...textBase, left: px(45.6), top: px(43.6), fontSize: px(18.6), fontStretch: "107.7%", fontWeight: 200, color: "#99a3b6" }}>{updatedText}</p>
+      <p data-part="updated" style={{ ...textBase, left: px(45.6), top: px(43.6), fontSize: px(18.6), fontStretch: "107.7%", fontWeight: studio ? 400 : 200, color: T.updated }}>{updatedText}</p>
 
       <button
         ref={pillRef}
@@ -856,12 +923,12 @@ export function PeakChart({
         onClick={() => setOpen((o) => !o)}
         style={{
           position: "absolute", right: px(46), top: px(35), height: px(37), borderRadius: px(18.5), border: 0, padding: `0 ${px(19.8)} 0 ${px(19.4)}`,
-          display: "flex", alignItems: "flex-start", gap: px(6.72), background: "rgba(255,255,255,0.13)", cursor: "pointer", color: "#b9cdf2", fontFamily: font, outlineOffset: 2,
+          display: "flex", alignItems: "flex-start", gap: px(6.72), background: T.pillBg, cursor: "pointer", color: T.pillText, fontFamily: font, outlineOffset: 2,
         }}
       >
-        <span data-part="period" style={{ ...textBase, position: "relative", display: "block", marginTop: px(10.6), fontSize: px(17.2), fontStretch: "115%", fontWeight: 200, color: "#acc1e7" }}>{current}</span>
+        <span data-part="period" style={{ ...textBase, position: "relative", display: "block", marginTop: px(10.6), fontSize: px(17.2), fontStretch: "115%", fontWeight: studio ? 400 : 200, color: T.period }}>{current}</span>
         <svg viewBox="0 0 12 7" aria-hidden style={{ flex: "none", marginTop: px(15.9), width: px(12), height: px(7), overflow: "visible", transition: "transform .2s ease", transform: open ? "rotate(180deg)" : "none" }}>
-          <path d="M0.8 0.8 L6 6 L11.2 0.8" fill="none" stroke="#9fb7e0" strokeWidth={1.25} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+          <path d="M0.8 0.8 L6 6 L11.2 0.8" fill="none" stroke={T.chevron} strokeWidth={1.25} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
         </svg>
       </button>
 
@@ -871,9 +938,9 @@ export function PeakChart({
         aria-label="Period"
         style={{
           position: "absolute", right: px(46), top: px(80), minWidth: px(150), padding: px(6), borderRadius: px(16), zIndex: 3,
-          background: "rgba(20,34,64,0.55)", border: "1px solid rgba(255,255,255,0.12)",
-          boxShadow: "0 18px 40px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)",
-          backdropFilter: "blur(18px) saturate(150%)", WebkitBackdropFilter: "blur(18px) saturate(150%)",
+          background: T.menuBg, border: T.menuBorder,
+          boxShadow: T.menuShadow,
+          backdropFilter: T.menuBlur, WebkitBackdropFilter: T.menuBlur,
           transformOrigin: "top right", transition: "opacity .18s ease, transform .22s cubic-bezier(.2,.9,.3,1.2), visibility .22s",
           opacity: open ? 1 : 0, transform: open ? "none" : `translateY(${px(-6)}) scale(0.96)`, visibility: open ? "visible" : "hidden",
         }}
@@ -887,16 +954,16 @@ export function PeakChart({
             onClick={() => choose(p)}
             style={{
               display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", height: px(36), padding: `0 ${px(12)}`,
-              border: 0, borderRadius: px(10), background: p === current ? "rgba(255,255,255,0.09)" : "transparent", cursor: "pointer",
-              color: p === current ? "#e6eeff" : "#aebcd6", fontFamily: font, fontStretch: "116%", fontSize: px(15.5), textAlign: "left",
+              border: 0, borderRadius: px(10), background: p === current ? T.optActiveBg : "transparent", cursor: "pointer",
+              color: p === current ? T.optActive : T.opt, fontFamily: font, fontStretch: "116%", fontSize: px(15.5), textAlign: "left",
             }}
-            onPointerEnter={(e) => { if (p !== current) e.currentTarget.style.background = "rgba(255,255,255,0.06)" }}
+            onPointerEnter={(e) => { if (p !== current) e.currentTarget.style.background = T.optHoverBg }}
             onPointerLeave={(e) => { if (p !== current) e.currentTarget.style.background = "transparent" }}
           >
             {p}
             {p === current && (
               <svg viewBox="0 0 12 9" aria-hidden style={{ width: px(12), height: px(9) }}>
-                <path d="M1 4.6 L4.4 8 L11 1" fill="none" stroke="#9fc0ff" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+                <path d="M1 4.6 L4.4 8 L11 1" fill="none" stroke={T.check} strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
               </svg>
             )}
           </button>
@@ -909,17 +976,17 @@ export function PeakChart({
         aria-hidden
         style={{
           position: "absolute", left: 0, top: 0, opacity: 0, pointerEvents: "none", zIndex: 2, display: "flex", alignItems: "baseline", gap: px(7),
-          padding: `${px(7)} ${px(11)}`, borderRadius: px(11), background: "rgba(18,36,72,0.55)", border: "1px solid rgba(160,195,255,0.18)",
-          backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", whiteSpace: "nowrap", fontFamily: font, fontStretch: "116%",
+          padding: `${px(7)} ${px(11)}`, borderRadius: px(11), background: T.readBg, border: T.readBorder,
+          backdropFilter: T.readBlur, WebkitBackdropFilter: T.readBlur, whiteSpace: "nowrap", fontFamily: font, fontStretch: "116%",
         }}
       >
-        <span ref={readValRef} style={{ fontSize: px(16), fontWeight: 600, color: "#fff" }} />
-        <span ref={readLabRef} style={{ fontSize: px(12.5), color: "#9fb0cc" }} />
+        <span ref={readValRef} style={{ fontSize: px(16), fontWeight: 600, color: T.readVal }} />
+        <span ref={readLabRef} style={{ fontSize: px(12.5), color: T.readLab }} />
       </div>
 
-      <p data-part="title" style={{ ...textBase, left: 0, right: 0, textAlign: "center", top: px(441.4), fontSize: px(20.2), fontStretch: "115%", fontWeight: 200, color: "#9298a5" }}>{title}</p>
+      <p data-part="title" style={{ ...textBase, left: 0, right: 0, textAlign: "center", top: px(441.4), fontSize: px(20.2), fontStretch: "115%", fontWeight: studio ? 400 : 200, color: T.title }}>{title}</p>
       <div ref={numRef} style={{ position: "absolute", left: 0, right: 0, top: px(469), display: "flex", justifyContent: "center", opacity: 0 }}>
-        <div data-part="value" style={{ position: "relative", fontFamily: font, fontWeight: 500, fontSize: px(89.2), lineHeight: 1, letterSpacing: px(-0.5), whiteSpace: "nowrap", marginLeft: px(-8.5) }}>
+        <div data-part="value" style={{ position: "relative", fontFamily: font, fontWeight: studio ? 800 : 500, fontSize: px(89.2), lineHeight: 1, letterSpacing: px(-0.5), whiteSpace: "nowrap", marginLeft: px(-8.5) }}>
           <span style={{ position: "relative", display: "inline-block", fontVariantNumeric: "tabular-nums", fontStretch: "106%" }}>
             <span style={{ visibility: "hidden" }}>{finalDigits}</span>
             <span ref={digitsRef} style={{ position: "absolute", right: 0, top: 0 }}>{finalDigits}</span>
@@ -937,7 +1004,7 @@ export function PeakChart({
           )}
         </div>
       </div>
-      <p data-part="caption" style={{ ...textBase, left: 0, right: 0, textAlign: "center", top: px(560.9), fontSize: px(11.6), fontStretch: "108%", fontWeight: 250, color: "#9299a8" }}>{caption}</p>
+      <p data-part="caption" style={{ ...textBase, left: 0, right: 0, textAlign: "center", top: px(560.9), fontSize: px(11.6), fontStretch: "108%", fontWeight: studio ? 400 : 250, color: T.caption }}>{caption}</p>
     </div>
   )
 

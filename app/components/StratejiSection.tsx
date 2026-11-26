@@ -27,33 +27,29 @@ const pillars = [
 
 export default function StratejiSection() {
   return (
-    <section id="strategiya" className="py-24 relative">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-0 w-72 h-72 bg-[#FF6D29]/5 rounded-full blur-[100px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="strategiya" className="pt-28 pb-32 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:grid lg:grid-cols-12 lg:grid-rows-[auto_auto_1fr] lg:gap-x-16 lg:items-start">
         {/* Başlıq */}
-        <FadeUp className="text-center mb-6">
-          <span className="text-[#FF6D29] text-xs font-semibold tracking-widest uppercase">
+        <FadeUp className="lg:col-span-5 mb-5">
+          <span className="text-accent text-[13px] font-medium">
             Strateji Yanaşma
           </span>
         </FadeUp>
-        <FadeUp delay={0.1} className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        <FadeUp delay={0.1} className="lg:col-span-5 mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink">
             Niyə Birbaşa Çəkilişə Başlamırıq?
           </h2>
         </FadeUp>
 
         {/* Vurğu mətni */}
-        <FadeUp delay={0.2} className="mb-16">
-          <div className="max-w-4xl mx-auto glass-card rounded-2xl p-8 border-l-4 border-l-[#FF6D29]">
-            <p className="text-[#BABABA] text-base sm:text-lg leading-relaxed">
+        <FadeUp delay={0.2} className="lg:col-span-5 mb-16 lg:mb-0">
+          <div className="max-w-[60ch]">
+            <p className="text-muted text-base sm:text-[1.0625rem] leading-[1.7]">
               100-dən çox qlobal brendin rəsmi təchizatçısı olan belə böyük bir strukturun{' '}
-              <span className="text-white font-semibold">Kilavuz.az Instagram səhifəsi</span> və rəqəmsal vitrini idarə olunarkən,
+              <span className="text-ink font-semibold">Kilavuz.az Instagram səhifəsi</span> və rəqəmsal vitrini idarə olunarkən,
               birbaşa təsadüfi video çəkilişlərinə və post paylaşımlarına başlamaq korporativ imicə zərər verər.
               Çəkilişlərə başlamazdan əvvəl korporativ nüfuzunuzu qoruyacaq və prodakşn komandamıza dəqiq bir təlimat olacaq{' '}
-              <span className="text-[#FF6D29] font-semibold">Korporativ Brandbook və Marketinq Strategiyası</span> inşa edilməlidir.
+              <span className="text-ink font-semibold">Korporativ Brandbook və Marketinq Strategiyası</span> inşa edilməlidir.
             </p>
           </div>
         </FadeUp>
@@ -64,7 +60,7 @@ export default function StratejiSection() {
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15 } } }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:row-span-3 grid grid-cols-1"
         >
           {pillars.map((p, i) => {
             const Icon = p.Icon
@@ -75,16 +71,16 @@ export default function StratejiSection() {
                   hidden: { opacity: 0, y: 24 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
                 }}
-                whileHover={{ y: -4 }}
-                className="glass-card rounded-2xl p-8 group cursor-default transition-all duration-300"
+                whileHover={{ x: 4 }}
+                className="grid grid-cols-[2.5rem_1fr] gap-x-5 border-t border-line py-8 first:border-t-0 first:pt-0 last:pb-0 group cursor-default"
                 style={{ transition: 'transform 0.3s, border-color 0.3s, box-shadow 0.3s' }}
               >
-                <div className="w-12 h-12 rounded-xl bg-[#453027]/40 border border-[#453027]/70 flex items-center justify-center mb-5 text-[#FF6D29] group-hover:bg-[#FF6D29]/15 group-hover:border-[#FF6D29]/40 transition-colors">
-                  <Icon className="w-6 h-6 text-[#FF6D29]" />
+                <div className="row-span-3 pt-1 text-accent">
+                  <Icon className="w-6 h-6 text-accent" strokeWidth={1.5} />
                 </div>
-                <div className="text-[#FF6D29] text-sm font-semibold mb-2 font-mono">{p.num} /</div>
-                <h3 className="text-white text-xl font-bold mb-3">{p.title}</h3>
-                <p className="text-[#BABABA] text-sm leading-relaxed">{p.desc}</p>
+                <div className="text-muted text-[13px] font-medium mb-1 tabular-nums">{p.num} /</div>
+                <h3 className="text-ink text-xl sm:text-2xl font-bold mb-3">{p.title}</h3>
+                <p className="text-muted text-[15px] leading-relaxed max-w-[58ch]">{p.desc}</p>
               </motion.div>
             )
           })}

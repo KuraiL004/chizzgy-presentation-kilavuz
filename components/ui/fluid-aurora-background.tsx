@@ -4,7 +4,7 @@ import * as React from "react"
 
 /**
  * FluidAuroraBackground
- * - Deep obsidian / charcoal black canvas (#070708)
+ * - Deep obsidian / charcoal black canvas (#141214)
  * - 3 large heavily blurred (blur-[130px]) organic fluid orbs:
  *    1. Primary Orb: Vibrant Warm Orange (#F97316) - follows mouse with smooth LERP (0.05)
  *    2. Secondary Orb: Deep Amber / Burnt Orange (#EA580C) - counter-parallax inertia (0.02)
@@ -145,7 +145,7 @@ export function FluidAuroraBackground() {
     <div
       ref={containerRef}
       className="fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none"
-      style={{ backgroundColor: "#070708" }}
+      style={{ backgroundColor: "#141214" }}
       aria-hidden="true"
     >
       {/* ========================================================
@@ -157,7 +157,7 @@ export function FluidAuroraBackground() {
           ref={orb1Ref}
           className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full will-change-transform"
           style={{
-            background: "radial-gradient(circle, #F97316 0%, rgba(249, 115, 22, 0.4) 60%, transparent 100%)",
+            background: "radial-gradient(circle, #F06A2E 0%, rgba(240, 106, 46, 0.35) 60%, transparent 100%)",
             opacity: 0.22,
           }}
         />
@@ -167,7 +167,7 @@ export function FluidAuroraBackground() {
           ref={orb2Ref}
           className="absolute top-0 left-0 w-[560px] h-[560px] rounded-full will-change-transform"
           style={{
-            background: "radial-gradient(circle, #EA580C 0%, rgba(234, 88, 12, 0.35) 65%, transparent 100%)",
+            background: "radial-gradient(circle, #5A4A41 0%, rgba(90, 74, 65, 0.35) 65%, transparent 100%)",
             opacity: 0.18,
           }}
         />
@@ -178,7 +178,7 @@ export function FluidAuroraBackground() {
           className="absolute top-0 left-0 w-[450px] h-[450px] rounded-full will-change-transform"
           style={{
             background:
-              "radial-gradient(circle at 40% 40%, #FB923C 0%, rgba(220, 38, 38, 0.45) 55%, transparent 100%)",
+              "radial-gradient(circle at 40% 40%, #3B302B 0%, rgba(59, 48, 43, 0.45) 55%, transparent 100%)",
             opacity: 0.2,
           }}
         />
@@ -204,13 +204,13 @@ export function FluidAuroraBackground() {
       </svg>
 
       {/* ========================================================
-          3. SOFT RADIAL VIGNETTE AROUND VIEWPORT EDGES (#070708)
+          3. SOFT RADIAL VIGNETTE AROUND VIEWPORT EDGES (#141214)
          ======================================================== */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 90% 75% at 50% 50%, transparent 45%, rgba(7, 7, 8, 0.6) 80%, #070708 100%)",
+            "radial-gradient(ellipse 90% 75% at 50% 50%, transparent 45%, rgba(20, 18, 20, 0.6) 80%, #141214 100%)",
         }}
       />
     </div>

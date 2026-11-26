@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Archivo, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
-/* ── Poppins: tüm 6 ağırlık — PROJECT_SPEC.md §2A ── */
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
+/* ── Başlıq: Archivo (variable, width oxu ilə — film titrləri kimi geniş) ── */
+const archivo = Archivo({
+  subsets: ["latin", "latin-ext"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
   display: "swap",
-  preload: true,
+});
+
+/* ── Mətn: Hanken Grotesk (variable) ── */
+const hanken = Hanken_Grotesk({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-hanken",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="az" className={`${poppins.variable} h-full`}>
+    <html lang="az" className={`${archivo.variable} ${hanken.variable} h-full`}>
       <body className="min-h-full antialiased">
         {children}
       </body>

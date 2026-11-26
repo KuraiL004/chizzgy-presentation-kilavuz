@@ -4,9 +4,9 @@ import * as React from "react"
 
 /**
  * InteractiveBackground Component
- * - Base dark canvas (#09090B)
+ * - Base dark canvas (#141214)
  * - Dot grid pattern (1px dots, 24px spacing, subtle opacity)
- * - Smooth cursor spotlight via LERP (linear interpolation) with 400px radius [#6366F1] at 15% opacity
+ * - Smooth cursor spotlight via LERP (linear interpolation) with 400px radius warm accent #F06A2E at 7% opacity
  * - Proximity reaction: dots within 120px scale up to 1.5x and brighten
  * - HTML5 Canvas + requestAnimationFrame (60fps, no React re-renders on mousemove)
  * - Graceful ambient floating motion on touch/mobile or when idle
@@ -97,15 +97,15 @@ export function InteractiveBackground() {
       const mx = mouse.x
       const my = mouse.y
 
-      // 1. Base Layer Fill (#09090B)
-      ctx.fillStyle = "#09090B"
+      // 1. Base Layer Fill (#141214)
+      ctx.fillStyle = "#141214"
       ctx.fillRect(0, 0, width, height)
 
-      // 2. Cursor Spotlight (400px radius [#6366F1] at 15% opacity)
+      // 2. Cursor Spotlight (400px radius warm accent #F06A2E at 7% opacity)
       const spotlightGrad = ctx.createRadialGradient(mx, my, 0, mx, my, SPOTLIGHT_RADIUS)
-      spotlightGrad.addColorStop(0, "rgba(99, 102, 241, 0.15)")
-      spotlightGrad.addColorStop(0.5, "rgba(99, 102, 241, 0.06)")
-      spotlightGrad.addColorStop(1, "rgba(99, 102, 241, 0)")
+      spotlightGrad.addColorStop(0, "rgba(240, 106, 46, 0.07)")
+      spotlightGrad.addColorStop(0.5, "rgba(240, 106, 46, 0.025)")
+      spotlightGrad.addColorStop(1, "rgba(240, 106, 46, 0)")
 
       ctx.fillStyle = spotlightGrad
       ctx.fillRect(0, 0, width, height)
@@ -142,7 +142,7 @@ export function InteractiveBackground() {
             alpha = 0.16 + 0.22 * factor
           }
 
-          ctx.fillStyle = `rgba(186, 186, 186, ${alpha.toFixed(3)})`
+          ctx.fillStyle = `rgba(168, 161, 155, ${alpha.toFixed(3)})`
           ctx.beginPath()
           ctx.arc(x, y, radius, 0, Math.PI * 2)
           ctx.fill()
@@ -167,7 +167,7 @@ export function InteractiveBackground() {
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0 w-full h-full block"
       style={{
-        backgroundColor: "#09090B",
+        backgroundColor: "#141214",
       }}
       aria-hidden="true"
     />

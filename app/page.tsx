@@ -7,17 +7,16 @@ import Faz1Section from './components/Faz1Section'
 import Faz2Section from './components/Faz2Section'
 import YatirimSection from './components/YatirimSection'
 import Footer from './components/Footer'
-import { FluidAuroraBackground } from '@/components/ui/fluid-aurora-background'
-import { InteractiveBackground } from '@/components/ui/interactive-background'
+import { AuroraField } from '@/components/ui/aurora-field'
 
 export default function Home() {
   return (
     <>
-      {/* 1. Interactive Fluid Aurora Mesh Gradient Background (Dark #070708 + Warm Orange Blobs) */}
-      <FluidAuroraBackground />
+      {/* WebGL aurora: slow drift + cursor displacement with chromatic split */}
+      <AuroraField />
 
-      {/* 2. Full-screen Interactive Dot Grid Background with LERP tracking */}
-      <InteractiveBackground />
+      {/* Site-wide grid over the aurora, under the content */}
+      <div aria-hidden="true" className="page-grid" />
 
       {/* Main Content (relative z-10 for complete interactivity above background) */}
       <div className="relative z-10">
