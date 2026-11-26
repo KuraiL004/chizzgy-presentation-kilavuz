@@ -155,7 +155,7 @@ export default function YatirimSection() {
   const currentData = THREE_DASHBOARDS_DATA[period] || THREE_DASHBOARDS_DATA['Aylıq']
 
   return (
-    <section className="pt-28 pb-32 relative">
+    <section className="pt-20 pb-24 md:pt-28 md:pb-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Yol Xəritəsi Naviqasiya Hədəfi */}
         <div id="yolxeritesi" className="scroll-mt-28" />
@@ -360,9 +360,9 @@ export default function YatirimSection() {
                       </div>
                       <div className="text-right">
                         {item.original && (
-                          <div className="text-muted text-[13px] line-through tabular-nums">{item.original}</div>
+                          <div className="text-muted text-[13px] line-through tabular-nums whitespace-nowrap">{item.original}</div>
                         )}
-                        <div className="font-display [font-stretch:112%] text-ink font-bold tabular-nums">{item.price}</div>
+                        <div className="font-display [font-stretch:112%] text-ink font-bold tabular-nums whitespace-nowrap">{item.price}</div>
                       </div>
                     </div>
                   ))}
@@ -370,7 +370,7 @@ export default function YatirimSection() {
 
                 {/* Təhlil və Araşdırma Cəmi */}
                 <div className="bg-raised border border-line rounded-lg p-5 mb-3 shadow-[inset_2px_0_0_0_var(--color-accent)]">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-4">
                     <div>
                       <div className="text-accent text-[13px] font-medium">
                         TƏHLİL VƏ ARAŞDIRMA — Quraşdırma Cəmi
@@ -379,14 +379,14 @@ export default function YatirimSection() {
                     </div>
                     <div className="text-right">
                       <div className="text-muted text-sm line-through tabular-nums">6.349 ₼</div>
-                      <div className="font-display [font-stretch:115%] text-ink text-3xl font-extrabold tabular-nums">5.699 ₼</div>
+                      <div className="font-display [font-stretch:115%] text-ink text-2xl sm:text-3xl font-extrabold tabular-nums whitespace-nowrap">5.699 ₼</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Yaradıcı Həllər */}
                 <div className="bg-bg/40 border border-line rounded-lg p-5">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-4">
                     <div>
                       <div className="text-ink text-[13px] font-medium">
                         YARADICI HƏLLƏR — Aylıq Prodakşn
@@ -394,7 +394,7 @@ export default function YatirimSection() {
                       <div className="text-muted text-[13px] mt-0.5">Pro Paket · 12 Reels · Premium</div>
                     </div>
                     <div className="text-right">
-                      <div className="font-display [font-stretch:115%] text-ink text-3xl font-extrabold tabular-nums">4.899 ₼</div>
+                      <div className="font-display [font-stretch:115%] text-ink text-2xl sm:text-3xl font-extrabold tabular-nums whitespace-nowrap">4.899 ₼</div>
                       <div className="text-muted text-xs">/ay</div>
                     </div>
                   </div>

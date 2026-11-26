@@ -152,22 +152,32 @@ export function AuroraField() {
     const uVel = gl.getUniformLocation(prog, "uVel")
 
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches
+    // phones / touch tablets: fewer pixels and 30 fps — the field moves slowly, so neither is visible
+    const small = matchMedia("(max-width: 767px), (hover: none)").matches
+    const resScale = small ? 0.3 : RES_SCALE
+    const minFrameMs = small ? 1000 / 30 : 0
 
-    const resize = () => {
+    let rect = canvas.getBoundingClientRect() // larger than the viewport so the CSS blur has no dark edges
+    let sizedW = -1, sizedH = -1
+    const resize = (force = false) => {
+      rect = canvas.getBoundingClientRect()
+      // mobile browsers change the height while the URL bar slides; re-allocating the canvas
+      // on every one of those causes scroll jank, so only react to real size changes
+      if (!force && rect.width === sizedW && Math.abs(rect.height - sizedH) < 160) return
+      sizedW = rect.width; sizedH = rect.height
       const dpr = Math.min(2, window.devicePixelRatio || 1)
-      const rect = canvas.getBoundingClientRect() // larger than the viewport so the CSS blur has no dark edges
-      const w = Math.max(1, Math.round(rect.width * dpr * RES_SCALE))
-      const h = Math.max(1, Math.round(rect.height * dpr * RES_SCALE))
+      const w = Math.max(1, Math.round(rect.width * dpr * resScale))
+      const h = Math.max(1, Math.round(rect.height * dpr * resScale))
       canvas.width = w
       canvas.height = h
       gl.viewport(0, 0, w, h)
       gl.uniform2f(uRes, w, h)
     }
-    resize()
+    resize(true)
 
     // pointer position and velocity in shader space
     const toShader = (cx: number, cy: number) => {
-      const r = canvas.getBoundingClientRect()
+      const r = rect // cached; no layout read per pointer event
       const aspect = r.width / r.height
       return { x: ((cx - r.left) / r.width - 0.5) * aspect, y: 0.5 - (cy - r.top) / r.height }
     }
@@ -197,6 +207,7 @@ export function AuroraField() {
     let last = performance.now()
     let drift = 0
     const frame = (now: number) => {
+      if (minFrameMs && now - last < minFrameMs - 2) { raf = requestAnimationFrame(frame); return }
       const dt = Math.min(0.05, (now - last) / 1000)
       last = now
       drift += dt * DRIFT
@@ -227,6 +238,9 @@ export function AuroraField() {
       resize()
       if (reduce) drawStatic()
     }
+    // GPU context can be dropped (e.g. tab backgrounded on iOS): stop and show the CSS fallback
+    const onLost = (e: Event) => { e.preventDefault(); stop(); canvas.dataset.fallback = "true" }
+    canvas.addEventListener("webglcontextlost", onLost)
 
     window.addEventListener("resize", onResize)
     if (reduce) {
@@ -240,6 +254,7 @@ export function AuroraField() {
 
     return () => {
       stop()
+      canvas.removeEventListener("webglcontextlost", onLost)
       window.removeEventListener("resize", onResize)
       window.removeEventListener("pointermove", onMove)
       document.documentElement.removeEventListener("pointerleave", onLeave)
@@ -253,7 +268,7 @@ export function AuroraField() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed -inset-[60px] z-0 block w-[calc(100%+120px)] h-[calc(100%+120px)] pointer-events-none blur-[28px] bg-bgdata-[fallback=true]:bg-[radial-gradient(ellipse_80%_55%_at_30%_0%,#3B302B_0%,transparent_70%),radial-gradient(ellipse_60%_45%_at_85%_10%,rgba(122,52,24,0.45)_0%,transparent_70%)]"
+      className="fixed -inset-[60px] z-0 block w-[calc(100%+120px)] h-[calc(100%+120px)] pointer-events-none md:blur-[28px] bg-bgdata-[fallback=true]:bg-[radial-gradient(ellipse_80%_55%_at_30%_0%,#3B302B_0%,transparent_70%),radial-gradient(ellipse_60%_45%_at_85%_10%,rgba(122,52,24,0.45)_0%,transparent_70%)]"
     />
   )
 }

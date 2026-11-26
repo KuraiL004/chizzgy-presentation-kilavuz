@@ -67,7 +67,7 @@
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    min-height: 100dvh;
+    min-height: 100svh;
   }
 
   /* Display type: Archivo, widened like film titles, tight leading */
@@ -128,6 +128,12 @@ body::after {
     linear-gradient(rgb(242 238 233 / 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgb(242 238 233 / 0.02) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* Phones: the blended grain layer re-composites the whole screen every frame over the
+   animated background — skip it there, it is barely visible on small screens anyway */
+@media (max-width: 767px), (hover: none) {
+  body::after { display: none; }
 }
 
 /* =====================================================

@@ -13,9 +13,8 @@ import type { PortfolioVideo } from '@/src/data/videos'
 
 // Siçan ilə dartanda bu qədər pikseldən sonra "klik" yox, "drag" sayılır
 const DRAG_THRESHOLD = 6
-// Kənarlardakı fade zolağının eni (px). Scroll limiti də buradır:
-// ən sola/sağa çəkəndə ilk/son video məhz fadenin bitdiyi nöqtədə dayanır.
-const FADE = 96
+// Kənarlardakı fade zolağının eni CSS dəyişənindədir (--reel-fade: telefonda 20px, sm+ 96px).
+// Ən sola/sağa çəkəndə ilk/son video məhz fadenin bitdiyi nöqtədə dayanır.
 
 // --- Fizika parametrləri ---
 // Rezin: limitdən o yana d px dartanda ekranda nə qədər gedir (yumşaq, 140px-ə asimptotik yaxınlaşır)
@@ -33,7 +32,8 @@ const rubber = (d: number) =>
   Math.sign(d) * RUBBER_MAX * (1 - 1 / ((Math.abs(d) * RUBBER_STIFFNESS) / RUBBER_MAX + 1))
 
 // Fade hər iki tərəfdə daim qalır
-const MASK = `linear-gradient(to right, transparent 0, #000 ${FADE}px, #000 calc(100% - ${FADE}px), transparent 100%)`
+// fade width comes from --reel-fade (20px on phones, 96px from sm up) so cards are not pushed off-centre on small screens
+const MASK = `linear-gradient(to right, transparent 0, #000 var(--reel-fade), #000 calc(100% - var(--reel-fade)), transparent 100%)`
 
 /**
  * 9:16 kart: üzərində dəyirmi play düyməsi.
@@ -405,7 +405,7 @@ export default function PortfolyoSection() {
     'w-11 h-11 rounded-md border border-line text-ink flex items-center justify-center transition-colors duration-200 hover:border-line-strong hover:bg-surface disabled:opacity-30 disabled:pointer-events-none'
 
   return (
-    <section id="portfel" className="pt-28 pb-32 relative">
+    <section id="portfel" className="pt-20 pb-24 md:pt-28 md:pb-32 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Başlıq */}
         <FadeUp className="text-left mb-5 flex items-center gap-3 before:block before:w-6 before:h-px before:bg-accent">
@@ -458,17 +458,17 @@ export default function PortfolyoSection() {
             onPointerLeave={endDrag}
             onClickCapture={onClickCapture}
             onDragStart={(e) => e.preventDefault()}
-            className={`no-scrollbar overflow-x-auto py-5 select-none ${
+            className={`no-scrollbar overflow-x-auto py-5 select-none [--reel-fade:20px] sm:[--reel-fade:96px] ${
               isDragging ? 'cursor-grabbing' : 'cursor-grab'
             } ${snapEnabled ? 'snap-x snap-mandatory' : ''}`}
             style={{
               scrollbarWidth: 'none',
-              scrollPaddingInline: FADE,
+              scrollPaddingInline: "var(--reel-fade)",
               maskImage: MASK,
               WebkitMaskImage: MASK,
             }}
           >
-            <div ref={innerRef} className="flex gap-4 w-max will-change-transform" style={{ paddingInline: FADE }}>
+            <div ref={innerRef} className="flex gap-4 w-max will-change-transform" style={{ paddingInline: "var(--reel-fade)" }}>
               {reelVideos.map((video, i) => (
                 <ReelCard
                   key={i}

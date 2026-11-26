@@ -54,7 +54,7 @@ export default function Faz2Section() {
   const [activeLevel, setActiveLevel] = useState<Level>('Premium')
 
   return (
-    <section id="faza2" className="pt-28 pb-32 relative">
+    <section id="faza2" className="pt-20 pb-24 md:pt-28 md:pb-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Başlıq */}
         <FadeUp className="text-left mb-5">
@@ -144,9 +144,9 @@ export default function Faz2Section() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-line/40">
-                    <th className="text-left p-5 text-muted text-sm font-semibold">Paket</th>
-                    <th className="text-center p-5 text-muted text-sm font-semibold">Reels Sayı</th>
-                    <th className="text-center p-5 text-accent text-sm font-bold">
+                    <th className="text-left p-3 sm:p-5 text-muted text-sm font-semibold">Paket</th>
+                    <th className="text-center p-3 sm:p-5 text-muted text-sm font-semibold hidden sm:table-cell">Reels Sayı</th>
+                    <th className="text-center p-3 sm:p-5 text-accent text-sm font-bold">
                       <AnimatePresence mode="wait">
                         <motion.span
                           key={activeLevel}
@@ -159,7 +159,7 @@ export default function Faz2Section() {
                         </motion.span>
                       </AnimatePresence>
                     </th>
-                    <th className="text-left p-5 text-muted text-sm font-semibold hidden md:table-cell">
+                    <th className="text-left p-3 sm:p-5 text-muted text-sm font-semibold hidden md:table-cell">
                       Məzmun və Təhvil Detalları
                     </th>
                   </tr>
@@ -175,13 +175,13 @@ export default function Faz2Section() {
                         pkg.isRecommended ? 'bg-accent/5' : 'hover:bg-line/10'
                       }`}
                     >
-                      <td className="p-5">
+                      <td className="p-3 sm:p-5">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded-md bg-raised flex items-center justify-center text-sm font-display tabular-nums font-bold text-ink">
                             {pkg.reels}
                           </div>
                           <div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                               <span className="text-ink font-bold">{pkg.name}</span>
                               {pkg.isRecommended && (
                                 <span className="text-[11px] bg-accent text-bg rounded-sm px-1.5 py-0.5 font-semibold flex items-center gap-1 whitespace-nowrap">
@@ -194,10 +194,10 @@ export default function Faz2Section() {
                           </div>
                         </div>
                       </td>
-                      <td className="p-5 text-center">
+                      <td className="p-3 sm:p-5 text-center hidden sm:table-cell">
                         <span className="text-muted text-sm tabular-nums font-medium">{pkg.reels} Video</span>
                       </td>
-                      <td className="p-5 text-center">
+                      <td className="p-3 sm:p-5 text-center">
                         <AnimatePresence mode="wait">
                           <motion.span
                             key={activeLevel + pkg.name}
@@ -216,7 +216,7 @@ export default function Faz2Section() {
                         </AnimatePresence>
                         <div className="text-muted text-xs">/ay</div>
                       </td>
-                      <td className="p-5 hidden md:table-cell">
+                      <td className="p-3 sm:p-5 hidden md:table-cell">
                         <span className="text-muted text-sm">{pkg.items}</span>
                       </td>
                     </motion.tr>
@@ -226,7 +226,7 @@ export default function Faz2Section() {
             </div>
 
             {/* Düzəliş qeydi */}
-            <div className="p-5 border-t border-line/40 bg-line/10">
+            <div className="p-4 sm:p-5 border-t border-line/40 bg-line/10">
               <p className="text-muted text-xs">
                 <span className="text-white font-semibold">Əlavə Düzəliş Qeydi</span> (3-cü düzəliş və sonrası):
                 Basic 20 ₼/video · Standart 35 ₼/video · Premium 50 ₼/video · Hero Montaj 100 ₼/video

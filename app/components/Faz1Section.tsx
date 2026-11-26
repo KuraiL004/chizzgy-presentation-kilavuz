@@ -69,7 +69,7 @@ const faz1Items = [
 
 export default function Faz1Section() {
   return (
-    <section id="faza1" className="pt-28 pb-32 relative">
+    <section id="faza1" className="pt-20 pb-24 md:pt-28 md:pb-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Başlıq */}
         <FadeUp className="text-left mb-5">

@@ -805,6 +805,10 @@ export function PeakChart({
     const busy = () => {
       if (!started) return false
       if (reduce) return L.morph < 1 || Math.abs(L.hoverMix - (L.hover !== null ? 1 : 0)) > 0.001
+      // studio has no breathing glow: once the reveal has settled, stop redrawing until
+      // something changes (hover, new data, new value) — kick() restarts the loop then
+      if (studio && L.loop <= 0 && clock > T_REST + 0.6 && L.morph >= 1 && L.valueT >= 1 &&
+          Math.abs(L.hoverMix - (L.hover !== null ? 1 : 0)) < 0.001) return false
       return true
     }
     const tick = () => {

@@ -48,7 +48,9 @@ export default function Navbar() {
 
   return (
     <nav
-      onFocus={() => setFocusInside(true)}
+      // only keyboard focus keeps the bar open; a tapped/clicked link keeps focus too,
+      // which previously pinned the bar visible on mobile after the first tap
+      onFocus={(e) => setFocusInside(e.target.matches(':focus-visible'))}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocusInside(false)
       }}

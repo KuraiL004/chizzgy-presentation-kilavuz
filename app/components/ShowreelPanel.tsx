@@ -46,7 +46,8 @@ function MainPlayer({ video, index }: { video: PortfolioVideo; index: number }) 
     if (knobRef.current) knobRef.current.style.left = `${percent}%`
   }
 
-  // timeupdate saniyədə ~4 dəfə gəlir, çubuq sıçrayır; hər kadrda birbaşa DOM-u yeniləyirik
+  // timeupdate saniyədə ~4 dəfə gəlir, çubuq sıçrayır; hər kadrda birbaşa DOM-u yeniləyirik.
+  // Pleyer ekrandan çıxanda həm video, həm də bu dövr dayanır (mobil performans və trafik üçün).
   useEffect(() => {
     let id = 0
     const tick = () => {
@@ -56,9 +57,24 @@ function MainPlayer({ video, index }: { video: PortfolioVideo; index: number }) 
       }
       id = requestAnimationFrame(tick)
     }
-    id = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(id)
-  }, [])
+    const startTick = () => { if (!id) id = requestAnimationFrame(tick) }
+    const stopTick = () => { cancelAnimationFrame(id); id = 0 }
+    startTick()
+
+    const v = videoRef.current
+    if (!v || typeof IntersectionObserver === 'undefined') return stopTick
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        v.play().catch(() => {})
+        startTick()
+      } else {
+        v.pause()
+        stopTick()
+      }
+    }, { threshold: 0.05 })
+    io.observe(v)
+    return () => { io.disconnect(); stopTick() }
+  }, [video.src])
 
   if (!video.src) return <Placeholder big index={index} />
 
@@ -174,7 +190,7 @@ function MainPlayer({ video, index }: { video: PortfolioVideo; index: number }) 
       {/* YouTube üslubunda: yalnız siçan pleyerin üstündə olanda görünən timeline */}
       <div
         className={`absolute inset-x-0 bottom-0 z-10 transition-opacity duration-200 ${
-          scrubbing ? 'opacity-100' : 'opacity-0 group-hover/player:opacity-100'
+          scrubbing ? 'opacity-100' : 'opacity-0 group-hover/player:opacity-100 [@media(hover:none)]:opacity-100'
         }`}
       >
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />

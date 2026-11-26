@@ -33,7 +33,7 @@ const features = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-dvh flex flex-col justify-center overflow-hidden pt-32 pb-20">
+    <section className="relative min-h-svh flex flex-col justify-center overflow-hidden pt-32 pb-20">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Rozet */}
         <FadeUp className="flex justify-start mb-10">

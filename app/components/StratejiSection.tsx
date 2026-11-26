@@ -27,7 +27,7 @@ const pillars = [
 
 export default function StratejiSection() {
   return (
-    <section id="strategiya" className="pt-28 pb-32 relative">
+    <section id="strategiya" className="pt-20 pb-24 md:pt-28 md:pb-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:grid lg:grid-cols-12 lg:grid-rows-[auto_auto_1fr] lg:gap-x-16 lg:items-start">
         {/* Başlıq */}
         <FadeUp className="lg:col-span-5 mb-5">
