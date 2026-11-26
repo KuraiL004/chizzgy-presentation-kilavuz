@@ -41,6 +41,29 @@ function MainPlayer({ video, index }: { video: PortfolioVideo; index: number }) 
   // Dartma zamanı siçan pleyerdən çıxsa da timeline görünsün
   const [scrubbing, setScrubbing] = useState(false)
 
+  // Toxunuşlu ekranlarda hover yoxdur: pleyerə toxunanda idarə paneli açılır,
+  // 3 saniyə toxunulmasa özü gizlənir; paneldən istifadə edərkən açıq qalır.
+  const [touchShown, setTouchShown] = useState(false)
+  const hideTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const scheduleHide = () => {
+    clearTimeout(hideTimer.current)
+    hideTimer.current = setTimeout(() => setTouchShown(false), 3000)
+  }
+  useEffect(() => () => clearTimeout(hideTimer.current), [])
+  const onSurfaceTap = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === 'mouse') return
+    const next = !touchShown
+    setTouchShown(next)
+    if (next) scheduleHide()
+    else clearTimeout(hideTimer.current)
+  }
+  const onControlsDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== 'mouse') clearTimeout(hideTimer.current)
+  }
+  const onControlsUp = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== 'mouse') scheduleHide()
+  }
+
   const paintProgress = (percent: number) => {
     if (fillRef.current) fillRef.current.style.width = `${percent}%`
     if (knobRef.current) knobRef.current.style.left = `${percent}%`
@@ -187,72 +210,80 @@ function MainPlayer({ video, index }: { video: PortfolioVideo; index: number }) 
         onSeeked={onSeeked}
         className="absolute inset-0 w-full h-full object-cover"
       />
-      {/* YouTube üslubunda: yalnız siçan pleyerin üstündə olanda görünən timeline */}
+      {/* Toxunuşlu ekranlarda toxunma qatı: panel açılır/bağlanır */}
+      <div aria-hidden className="absolute inset-0 z-[5]" onPointerUp={onSurfaceTap} />
+      {/* İdarə paneli: timeline + səs. Desktop-da siçan pleyerin üstündə olanda, mobildə toxunanda görünür */}
       <div
+        onPointerDownCapture={onControlsDown}
+        onPointerUpCapture={onControlsUp}
         className={`absolute inset-x-0 bottom-0 z-10 transition-opacity duration-200 ${
-          scrubbing ? 'opacity-100' : 'opacity-0 group-hover/player:opacity-100 [@media(hover:none)]:opacity-100'
+          scrubbing || volOpen || touchShown
+            ? 'opacity-100'
+            : 'opacity-0 pointer-events-none group-hover/player:opacity-100 group-hover/player:pointer-events-auto focus-within:opacity-100 focus-within:pointer-events-auto'
         }`}
       >
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
-        <div
-          ref={barRef}
-          aria-hidden
-          onPointerDown={onBarDown}
-          onPointerMove={onBarMove}
-          onPointerUp={onBarUp}
-          onPointerCancel={onBarUp}
-          className="group/bar relative h-3 flex items-end cursor-pointer touch-none"
-        >
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="relative flex items-center gap-3 px-4 pb-3 sm:px-5 sm:pb-4">
           <div
-            className={`relative w-full bg-white/25 transition-[height] duration-150 ${
-              scrubbing ? 'h-[5px]' : 'h-[3px] group-hover/bar:h-[5px]'
-            }`}
+            ref={barRef}
+            aria-hidden
+            onPointerDown={onBarDown}
+            onPointerMove={onBarMove}
+            onPointerUp={onBarUp}
+            onPointerCancel={onBarUp}
+            className="group/bar relative flex-1 h-6 flex items-center cursor-pointer touch-none"
           >
-            <div ref={fillRef} className="absolute inset-y-0 left-0 bg-accent" style={{ width: '0%' }} />
             <div
-              ref={knobRef}
-              className={`absolute top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent transition-transform ${
-                scrubbing ? 'scale-100' : 'scale-0 group-hover/bar:scale-100'
+              className={`relative w-full rounded-full bg-white/25 transition-[height] duration-150 ${
+                scrubbing ? 'h-[5px]' : 'h-[3px] group-hover/bar:h-[5px]'
               }`}
-              style={{ left: '0%' }}
-            />
+            >
+              <div ref={fillRef} className="absolute inset-y-0 left-0 rounded-full bg-accent" style={{ width: '0%' }} />
+              <div
+                ref={knobRef}
+                className={`absolute top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent transition-transform ${
+                  scrubbing ? 'scale-100' : 'scale-0 group-hover/bar:scale-100'
+                }`}
+                style={{ left: '0%' }}
+              />
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="group/vol absolute bottom-3 right-3 z-10 flex items-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors">
-        <div
-          ref={volRef}
-          role="slider"
-          tabIndex={0}
-          aria-label="Səs səviyyəsi"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(shownVolume * 100)}
-          onPointerDown={onVolDown}
-          onPointerMove={onVolMove}
-          onPointerUp={onVolUp}
-          onPointerCancel={onVolUp}
-          onKeyDown={onVolKey}
-          className={`relative h-9 flex items-center cursor-pointer touch-none overflow-hidden outline-none transition-colors duration-200 ${
-            volOpen ? 'w-20 opacity-100 ml-3.5' : 'w-0 opacity-0'
-          } group-hover/vol:w-20 group-hover/vol:opacity-100 group-hover/vol:ml-3.5 group-focus-within/vol:w-20 group-focus-within/vol:opacity-100 group-focus-within/vol:ml-3.5`}
-        >
-          <div className="relative w-full h-1 rounded-full bg-white/20">
-            <div className="absolute inset-y-0 left-0 rounded-full bg-accent" style={{ width: `${shownVolume * 100}%` }} />
+          <div className="group/vol shrink-0 flex items-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors">
             <div
-              className="absolute top-1/2 w-2.5 h-2.5 -translate-y-1/2 rounded-full bg-white"
-              style={{ left: `calc(${shownVolume * 100}% - ${shownVolume * 10}px)` }}
-            />
+              ref={volRef}
+              role="slider"
+              tabIndex={0}
+              aria-label="Səs səviyyəsi"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round(shownVolume * 100)}
+              onPointerDown={onVolDown}
+              onPointerMove={onVolMove}
+              onPointerUp={onVolUp}
+              onPointerCancel={onVolUp}
+              onKeyDown={onVolKey}
+              className={`relative h-9 flex items-center cursor-pointer touch-none overflow-hidden outline-none transition-colors duration-200 ${
+                volOpen ? 'w-20 opacity-100 ml-3.5' : 'w-0 opacity-0'
+              } group-hover/vol:w-20 group-hover/vol:opacity-100 group-hover/vol:ml-3.5 group-focus-within/vol:w-20 group-focus-within/vol:opacity-100 group-focus-within/vol:ml-3.5`}
+            >
+              <div className="relative w-full h-1 rounded-full bg-white/20">
+                <div className="absolute inset-y-0 left-0 rounded-full bg-accent" style={{ width: `${shownVolume * 100}%` }} />
+                <div
+                  className="absolute top-1/2 w-2.5 h-2.5 -translate-y-1/2 rounded-full bg-white"
+                  style={{ left: `calc(${shownVolume * 100}% - ${shownVolume * 10}px)` }}
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={toggleMute}
+              aria-label={muted ? 'Səsi aç' : 'Səsi bağla'}
+              className="w-9 h-9 rounded-full flex items-center justify-center"
+            >
+              <VolumeIcon className="w-4 h-4" />
+            </button>
           </div>
         </div>
-        <button
-          type="button"
-          onClick={toggleMute}
-          aria-label={muted ? 'Səsi aç' : 'Səsi bağla'}
-          className="w-9 h-9 rounded-full flex items-center justify-center"
-        >
-          <VolumeIcon className="w-4 h-4" />
-        </button>
       </div>
     </>
   )
